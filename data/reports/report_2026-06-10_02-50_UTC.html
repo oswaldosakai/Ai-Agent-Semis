@@ -1,0 +1,790 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semis Factor Analysis — 2026-06-10 02:50 UTC</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3e;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --cyan: #22d3ee;
+    --purple: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; padding: 24px; }
+  h1 { font-size: 1.6rem; color: var(--cyan); margin-bottom: 4px; }
+  .meta { color: var(--muted); margin-bottom: 24px; font-size: 0.85rem; }
+  h2 { font-size: 1.1rem; color: var(--purple); margin: 28px 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--surface); color: var(--muted); text-align: left; padding: 8px 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  .buy { color: var(--green); font-weight: 700; }
+  .sell { color: var(--red); font-weight: 700; }
+  .hold { color: var(--yellow); font-weight: 600; }
+  .score-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; width: 120px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+  .score-bar { height: 100%; border-radius: 4px; }
+  .pos { background: var(--green); }
+  .neg { background: var(--red); }
+  .neutral-bar { background: var(--yellow); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; }
+  .badge-earnings { background: #1e3a5f; color: #60a5fa; }
+  .badge-tariffs { background: #3b1f1f; color: #f87171; }
+  .badge-geopolitics { background: #3b2d1f; color: #fb923c; }
+  .badge-ai_demand { background: #1e3b2e; color: #4ade80; }
+  .badge-supply_chain { background: #2d2b1e; color: #fbbf24; }
+  .badge-rates { background: #2d1e3b; color: #c084fc; }
+  .badge-default { background: var(--surface); color: var(--muted); }
+  .factor-desc { color: var(--text); }
+  .factor-meta { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+  .forward-dir { font-size: 0.8rem; font-weight: 600; }
+  .intensify_positive { color: var(--green); }
+  .intensify_negative { color: var(--red); }
+  .diminish { color: var(--muted); }
+  .persist { color: var(--yellow); }
+  .reverse { color: var(--cyan); }
+  .history-chip { display: inline-block; width: 28px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin: 1px; }
+  .chip-BUY { background: rgba(34,197,94,0.2); color: var(--green); border: 1px solid var(--green); }
+  .chip-SELL { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid var(--red); }
+  .chip-HOLD { background: rgba(234,179,8,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+  .disclaimer { color: var(--muted); font-size: 0.78rem; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Semiconductor Factor Analysis</h1>
+<div class="meta">Run: 2026-06-10 02:50 UTC &nbsp;|&nbsp; Model: claude-sonnet-4-6 &nbsp;|&nbsp; Thresholds: BUY ≥ 0.35 / SELL ≤ -0.35</div>
+
+<!-- ── Signal Summary ────────────────────────────────────────────────── -->
+<h2>Signal Summary</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Signal</th>
+      <th>Composite Score</th>
+      <th>14-Day Price %</th>
+      <th>Top Factors</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><strong>NVDA</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.400
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:70%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>TSM</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.400
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:70%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXX</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.355
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:68%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SMH</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.355
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:68%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXL</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.355
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:68%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AMD</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.303
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:65%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AVGO</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.303
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:65%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>MU</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.301
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:65%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AMAT</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.193
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:60%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>LRCX</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.193
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:60%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>ASML</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.180
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:59%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>INTC</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.106
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:55%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>QCOM</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.106
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:55%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXS</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.064
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:47%"></span>
+        </span>
+      </td>
+      <td>+0.0%</td>
+      <td>
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Key Factors ───────────────────────────────────────────────────── -->
+<h2>Key Factors (Current Cycle)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Sentiment</th>
+      <th>Mag</th>
+      <th>Age</th>
+      <th>Score</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Forward Factors ──────────────────────────────────────────────── -->
+<h2>Forward-Looking Factors (1–2 Week Outlook)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Direction</th>
+      <th>Confidence</th>
+      <th>Horizon</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          Macro/Monetary Policy
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Federal Reserve policy uncertainty and rate trajectory impact on semiconductor valuations</div>
+        
+        <div class="factor-meta">Fed remains data-dependent with no scheduled FOMC meeting in the immediate 1-2 week window. Rate-sen</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>65%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, TSM, ASML, MU, AMAT, LRCX, SOXX, SMH, SOXS, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          AI/Data Center Demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Sustained AI infrastructure buildout driving GPU and HBM demand expectations</div>
+        
+        <div class="factor-meta">Hyperscaler capex commentary from recent earnings cycles continues to reinforce AI accelerator deman</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>72%</td>
+      <td>10d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, MU, AVGO, TSM, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          Earnings/Guidance Risk
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Pre-earnings positioning and guidance sensitivity for key semiconductor names</div>
+        
+        <div class="factor-meta">INTC faces ongoing restructuring uncertainty and market share pressure; any forward guidance miss co</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_negative">
+          intensify negative
+        </span>
+      </td>
+      <td>58%</td>
+      <td>7d</td>
+      <td style="font-size:0.8rem">INTC, QCOM, MU, AMAT, LRCX</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          Geopolitical/Export Controls
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">US-China trade restrictions and export control enforcement on semiconductor equipment and advanced chips</div>
+        
+        <div class="factor-meta">Export control regime remains in place with no near-term policy reversal expected. ASML faces EUV sh</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>75%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">NVDA, ASML, AMAT, LRCX, INTC, QCOM, TSM</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          Memory Cycle Recovery
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">DRAM and NAND pricing recovery cycle and inventory normalization</div>
+        
+        <div class="factor-meta">Memory pricing has been recovering from 2023 trough levels. HBM demand from AI accelerators is absor</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>62%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">MU, SMH, SOXX, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          Technical/Momentum
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Semiconductor sector ETF technical momentum and mean-reversion dynamics</div>
+        
+        <div class="factor-meta">After extended outperformance periods, semiconductor ETFs are prone to short-term mean reversion. SO</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir reverse">
+          reverse
+        </span>
+      </td>
+      <td>52%</td>
+      <td>7d</td>
+      <td style="font-size:0.8rem">SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          Supply Chain/Foundry Capacity
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Leading-edge foundry capacity constraints and CoWoS/advanced packaging bottlenecks</div>
+        
+        <div class="factor-meta">TSM CoWoS advanced packaging capacity remains a gating factor for AI chip shipments. This constraint</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>68%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">TSM, NVDA, AMD, AVGO, AMAT, LRCX</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          PC/Smartphone End Market
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Consumer electronics demand recovery and its impact on legacy semiconductor revenue</div>
+        
+        <div class="factor-meta">PC market recovery has been slower than anticipated, with AI PC refresh cycle not yet driving meanin</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir diminish">
+          diminish
+        </span>
+      </td>
+      <td>50%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">INTC, QCOM, AMD, MU</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Signal History ────────────────────────────────────────────────── -->
+
+<h2>Historical Signal Trend</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Recent Signals (oldest → newest)</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+    
+    
+    <tr>
+      <td><strong>NVDA</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 02:50">B</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AMD</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>INTC</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>QCOM</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AVGO</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>TSM</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 02:50">B</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>ASML</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>MU</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AMAT</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>LRCX</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXX</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 02:50">B</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SMH</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 02:50">B</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXS</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:50">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXL</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:36">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 02:47">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 02:50">B</span>
+        
+      </td>
+    </tr>
+    
+    
+  </tbody>
+</table>
+</div>
+
+
+<div class="disclaimer">
+  ⚠️ This report is generated by an AI agent for informational purposes only.
+  It does not constitute financial advice. Always do your own research before making investment decisions.
+  Data sources: web search, Google News RSS, yfinance. Powered by claude-sonnet-4-6.
+</div>
+
+</body>
+</html>
