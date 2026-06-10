@@ -21,6 +21,8 @@ def run_cycle(report_html: bool = True) -> list[dict]:
 
     console.print(f"\n[bold cyan]▶ Starting cycle[/bold cyan] [{run_id}] at {run_ts}")
 
+    state_store.init_db()
+
     # 1. Fetch ────────────────────────────────────────────────────────────────
     console.print("  [dim]Fetching news snippets…[/dim]")
     snippets = scraper.fetch_all_news()
@@ -53,7 +55,6 @@ def run_cycle(report_html: bool = True) -> list[dict]:
     recs = recommender.compute_scores(current_factors, forward_factors, price_data)
 
     # 5. Persist ─────────────────────────────────────────────────────────────
-    state_store.init_db()
     state_store.save_run(run_id, run_ts, config.CLAUDE_MODEL, len(snippets))
     state_store.save_factors(run_id, current_factors)
     state_store.save_recommendations(run_id, recs)
