@@ -77,7 +77,7 @@
       <th>Ticker</th>
       <th>Signal</th>
       <th>Composite Score</th>
-      <th>14-Day Price %</th>
+      <th>14-Day Price % <span style="font-weight:400;color:var(--muted)">(past)</span></th>
       <th>Top Factors</th>
     </tr>
   </thead>
@@ -100,7 +100,11 @@
       </td>
       <td>
         {% for tf in r.top_factors[:2] %}
-          <div style="margin-bottom:2px">{{ tf[:100] }}</div>
+          <div style="margin-bottom:4px">
+            {{ tf.description[:100] if tf is mapping else tf[:100] }}
+            {% set d = tf.event_date if tf is mapping else '' %}
+            {% if d %}<span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[{{ d }}]</span>{% endif %}
+          </div>
         {% endfor %}
       </td>
     </tr>

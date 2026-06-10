@@ -33,13 +33,14 @@ EXTRACTION_SCHEMA = {
     "type": "array",
     "items": {
         "type": "object",
-        "required": ["category", "description", "sentiment", "magnitude", "recency_days", "affected_tickers", "evidence"],
+        "required": ["category", "description", "sentiment", "magnitude", "recency_days", "event_date", "affected_tickers", "evidence"],
         "properties": {
             "category": {"type": "string", "enum": config.FACTOR_CATEGORIES},
             "description": {"type": "string"},
             "sentiment": {"type": "string", "enum": ["positive", "negative", "neutral"]},
             "magnitude": {"type": "integer", "minimum": 1, "maximum": 5},
             "recency_days": {"type": "number"},
+            "event_date": {"type": "string", "description": "Date the event occurred, YYYY-MM-DD"},
             "affected_tickers": {"type": "array", "items": {"type": "string"}},
             "evidence": {"type": "array", "items": {"type": "string"}},
         },
@@ -125,6 +126,7 @@ Factor categories: {', '.join(config.FACTOR_CATEGORIES)}
 === INSTRUCTIONS ===
 Extract all significant investment factors from the snippets above.
 - Set recency_days to the approximate age of the event in days (0=today, 7=one week ago)
+- Set event_date to the actual calendar date the event occurred (YYYY-MM-DD format)
 - affected_tickers should list only symbols from the universe above
 - If a factor affects the whole sector, list all relevant tickers
 - evidence should be 1-3 short quotes from the snippets

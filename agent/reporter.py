@@ -38,12 +38,18 @@ def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: s
         sig = r["signal"]
         pct = r.get("price_14d_change", 0) or 0
         pct_str = f"{pct:+.1f}%"
+        def _fmt_factor(tf):
+            if isinstance(tf, dict):
+                d = f" [{tf['event_date']}]" if tf.get("event_date") else ""
+                return tf.get("description", "")[:80] + d
+            return str(tf)[:80]
+
         table.add_row(
             r["ticker"],
             Text(sig, style=_signal_style(sig)),
             f"{r['composite_score']:+.3f}",
             pct_str,
-            "; ".join(r.get("top_factors", [])[:2]),
+            "; ".join(_fmt_factor(tf) for tf in r.get("top_factors", [])[:2]),
         )
     console.print(table)
 

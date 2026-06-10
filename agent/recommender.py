@@ -105,7 +105,10 @@ def compute_scores(
             "composite_score": round(display_composite, 3),
             "signal": signal,
             "confidence": confidence,
-            "top_factors": [f.get("description", "") for f in top_factors],
+            "top_factors": [
+            {"description": f.get("description", ""), "event_date": f.get("event_date", "")}
+            for f in top_factors
+        ],
             "price_14d_change": pct_chg,
         })
 
