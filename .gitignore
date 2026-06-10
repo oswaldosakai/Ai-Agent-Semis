@@ -2,8 +2,10 @@
 __pycache__/
 *.pyc
 *.pyo
-data/factor_history.db
-data/reports/
+data/*
+!data/reports/
+!data/reports/*.html
+!data/factor_history.db
 *.egg-info/
 dist/
 build/
