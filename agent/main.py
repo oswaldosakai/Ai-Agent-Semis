@@ -72,6 +72,7 @@ def cmd_history(args):
 
 
 def main():
+    state_store.init_db()
     parser = argparse.ArgumentParser(
         description="Semiconductor Factor Analysis Agent",
         formatter_class=argparse.RawDescriptionHelpFormatter,
