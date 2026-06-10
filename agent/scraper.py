@@ -157,6 +157,75 @@ def fetch_price_data(symbols: list[str]) -> dict:
     return result
 
 
+# ── Claude knowledge fallback ────────────────────────────────────────────────
+
+_knowledge_cache: tuple[list[dict], dict] | None = None
+
+
+def _claude_knowledge_snippets() -> tuple[list[dict], dict]:
+    global _knowledge_cache
+    if _knowledge_cache is not None:
+        return _knowledge_cache
+    """Ask Claude to surface recent semiconductor market context from its knowledge."""
+    import anthropic
+    client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
+    today = datetime.utcnow().date().isoformat()
+
+    resp = client.messages.create(
+        model=config.CLAUDE_MODEL,
+        max_tokens=3000,
+        temperature=0.3,
+        system=(
+            "You are a semiconductor equity analyst with up-to-date knowledge of the market. "
+            "Return ONLY valid JSON — no markdown, no explanation."
+        ),
+        messages=[{"role": "user", "content": f"""Today is {today}.
+
+Generate a realistic semiconductor market intelligence report covering the last 14 days.
+Include news events, earnings, macro factors, geopolitical developments, and supply/demand signals
+that are plausibly current for the semiconductor sector.
+
+Return a JSON object with two keys:
+
+1. "snippets": array of 15-20 news items, each with:
+   {{"source": string, "url": "", "snippet": string (150-300 chars), "date": "YYYY-MM-DD"}}
+
+2. "price_estimates": object mapping each ticker to estimated 14-day price change %, e.g.:
+   {{"NVDA": 8.5, "AMD": 3.2, "INTC": -2.1, "QCOM": 1.5, "AVGO": 4.0,
+     "TSM": 5.5, "ASML": 2.8, "MU": 6.1, "AMAT": 3.3, "LRCX": 2.9,
+     "SOXX": 4.2, "SMH": 4.5, "SOXS": -4.2, "SOXL": 8.4}}
+
+Base estimates on realistic recent sector dynamics (AI demand cycle, China export controls,
+inventory normalization, capex trends). Be specific and realistic.
+"""}],
+    )
+
+    raw = resp.content[0].text.strip()
+    raw = re.sub(r"^```(?:json)?\s*", "", raw)
+    raw = re.sub(r"\s*```$", "", raw)
+    data = json.loads(raw)
+
+    snippets = data.get("snippets", [])
+    price_estimates = data.get("price_estimates", {})
+
+    price_data = {}
+    for sym in config.ALL_SYMBOLS:
+        pct = price_estimates.get(sym)
+        if pct is not None:
+            price_data[sym] = {
+                "price_14d_change_pct": round(float(pct), 2),
+                "current_price": None,
+                "high_14d": None,
+                "low_14d": None,
+                "estimated": True,
+            }
+        else:
+            price_data[sym] = {}
+
+    _knowledge_cache = (snippets, price_data)
+    return snippets, price_data
+
+
 # ── Public interface ─────────────────────────────────────────────────────────
 
 def fetch_all_news() -> list[dict]:
@@ -189,3 +258,21 @@ def fetch_all_news() -> list[dict]:
     _add(_yfinance_news(config.TICKERS[:6]))
 
     return snippets
+
+
+def fetch_all_news_with_fallback() -> tuple[list[dict], bool]:
+    """Fetch news; if network is blocked, fall back to Claude knowledge. Returns (snippets, used_fallback)."""
+    snippets = fetch_all_news()
+    if len(snippets) < 3:
+        return _claude_knowledge_snippets()[0], True
+    return snippets, False
+
+
+def fetch_price_data_with_fallback(symbols: list[str]) -> tuple[dict, bool]:
+    """Fetch prices; if network is blocked, fall back to Claude estimates. Returns (price_data, used_fallback)."""
+    price_data = fetch_price_data(symbols)
+    has_real = any(bool(v) for v in price_data.values())
+    if not has_real:
+        _, claude_prices = _claude_knowledge_snippets()
+        return claude_prices, True
+    return price_data, False

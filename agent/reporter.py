@@ -20,8 +20,11 @@ def _signal_style(signal: str) -> str:
     return {"BUY": "bold green", "SELL": "bold red", "HOLD": "yellow"}.get(signal, "white")
 
 
-def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: str):
+def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: str,
+                     data_note: Optional[str] = None):
     console.rule(f"[bold cyan]Semis Factor Analysis — {run_ts}[/bold cyan]")
+    if data_note:
+        console.print(f"  [yellow]{data_note}[/yellow]\n")
 
     # ── Signals table ────────────────────────────────────────────────────────
     table = Table(title="Signals", box=box.ROUNDED, show_lines=True)
@@ -33,11 +36,13 @@ def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: s
 
     for r in sorted(recommendations, key=lambda x: x["composite_score"], reverse=True):
         sig = r["signal"]
+        pct = r.get("price_14d_change", 0) or 0
+        pct_str = f"{pct:+.1f}%"
         table.add_row(
             r["ticker"],
             Text(sig, style=_signal_style(sig)),
             f"{r['composite_score']:+.3f}",
-            f"{r.get('price_14d_change', 0):+.1f}%",
+            pct_str,
             "; ".join(r.get("top_factors", [])[:2]),
         )
     console.print(table)
@@ -70,6 +75,7 @@ def generate_html_report(
     forward_factors: list[dict],
     run_ts: str,
     historical_recs: list[dict],
+    data_estimated: bool = False,
 ) -> str:
     os.makedirs(config.REPORT_OUTPUT_DIR, exist_ok=True)
     filename = f"report_{run_ts.replace(':', '-').replace(' ', '_')}.html"
@@ -85,6 +91,7 @@ def generate_html_report(
         historical_recs=historical_recs,
         buy_threshold=config.BUY_THRESHOLD,
         sell_threshold=config.SELL_THRESHOLD,
+        data_estimated=data_estimated,
     )
 
     with open(filepath, "w") as fh:

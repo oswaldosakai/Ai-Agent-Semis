@@ -23,11 +23,26 @@ def run_cycle(report_html: bool = True) -> list[dict]:
 
     # 1. Fetch ────────────────────────────────────────────────────────────────
     console.print("  [dim]Fetching news snippets…[/dim]")
-    snippets = scraper.fetch_all_news()
-    console.print(f"  [dim]  → {len(snippets)} snippets collected[/dim]")
+    snippets, news_fallback = scraper.fetch_all_news_with_fallback()
+    if news_fallback:
+        console.print(f"  [yellow]  → Network unavailable — using Claude knowledge base ({len(snippets)} items)[/yellow]")
+    else:
+        console.print(f"  [dim]  → {len(snippets)} snippets collected[/dim]")
 
     console.print("  [dim]Fetching price data…[/dim]")
-    price_data = scraper.fetch_price_data(config.ALL_SYMBOLS)
+    # Reuse Claude knowledge call if we already fell back for news
+    if news_fallback:
+        try:
+            _, price_data = scraper._claude_knowledge_snippets()
+            price_fallback = True
+            console.print("  [yellow]  → Price data estimated by Claude[/yellow]")
+        except Exception:
+            price_data = {sym: {} for sym in config.ALL_SYMBOLS}
+            price_fallback = False
+    else:
+        price_data, price_fallback = scraper.fetch_price_data_with_fallback(config.ALL_SYMBOLS)
+        if price_fallback:
+            console.print("  [yellow]  → Price data estimated by Claude[/yellow]")
 
     # 2. Factor extraction ───────────────────────────────────────────────────
     console.print("  [dim]Extracting factors with Claude…[/dim]")
@@ -60,11 +75,13 @@ def run_cycle(report_html: bool = True) -> list[dict]:
     state_store.purge_old_data()
 
     # 6. Report ──────────────────────────────────────────────────────────────
-    reporter.print_cli_report(recs, current_factors, run_ts)
+    reporter.print_cli_report(recs, current_factors, run_ts,
+                              data_note="[Estimated via Claude knowledge — live data unavailable]" if news_fallback else None)
 
     if report_html:
         historical_recs = state_store.get_recent_recommendations(n_runs=10)
-        reporter.generate_html_report(recs, current_factors, forward_factors, run_ts, historical_recs)
+        reporter.generate_html_report(recs, current_factors, forward_factors, run_ts,
+                                      historical_recs, data_estimated=news_fallback)
 
     console.print(f"[bold green]✔ Cycle {run_id} complete.[/bold green]\n")
     return recs
