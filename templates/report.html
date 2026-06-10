@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semis Factor Analysis — {{ run_ts }}</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3e;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --cyan: #22d3ee;
+    --purple: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; padding: 24px; }
+  h1 { font-size: 1.6rem; color: var(--cyan); margin-bottom: 4px; }
+  .meta { color: var(--muted); margin-bottom: 24px; font-size: 0.85rem; }
+  h2 { font-size: 1.1rem; color: var(--purple); margin: 28px 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--surface); color: var(--muted); text-align: left; padding: 8px 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  .buy { color: var(--green); font-weight: 700; }
+  .sell { color: var(--red); font-weight: 700; }
+  .hold { color: var(--yellow); font-weight: 600; }
+  .score-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; width: 120px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+  .score-bar { height: 100%; border-radius: 4px; }
+  .pos { background: var(--green); }
+  .neg { background: var(--red); }
+  .neutral-bar { background: var(--yellow); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; }
+  .badge-earnings { background: #1e3a5f; color: #60a5fa; }
+  .badge-tariffs { background: #3b1f1f; color: #f87171; }
+  .badge-geopolitics { background: #3b2d1f; color: #fb923c; }
+  .badge-ai_demand { background: #1e3b2e; color: #4ade80; }
+  .badge-supply_chain { background: #2d2b1e; color: #fbbf24; }
+  .badge-rates { background: #2d1e3b; color: #c084fc; }
+  .badge-default { background: var(--surface); color: var(--muted); }
+  .factor-desc { color: var(--text); }
+  .factor-meta { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+  .forward-dir { font-size: 0.8rem; font-weight: 600; }
+  .intensify_positive { color: var(--green); }
+  .intensify_negative { color: var(--red); }
+  .diminish { color: var(--muted); }
+  .persist { color: var(--yellow); }
+  .reverse { color: var(--cyan); }
+  .history-chip { display: inline-block; width: 28px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin: 1px; }
+  .chip-BUY { background: rgba(34,197,94,0.2); color: var(--green); border: 1px solid var(--green); }
+  .chip-SELL { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid var(--red); }
+  .chip-HOLD { background: rgba(234,179,8,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+  .disclaimer { color: var(--muted); font-size: 0.78rem; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Semiconductor Factor Analysis</h1>
+<div class="meta">Run: {{ run_ts }} &nbsp;|&nbsp; Model: {{ model }} &nbsp;|&nbsp; Thresholds: BUY ≥ {{ buy_threshold }} / SELL ≤ {{ sell_threshold }}</div>
+
+<!-- ── Signal Summary ────────────────────────────────────────────────── -->
+<h2>Signal Summary</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Signal</th>
+      <th>Composite Score</th>
+      <th>14-Day Price %</th>
+      <th>Top Factors</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in recommendations | sort(attribute='composite_score', reverse=True) %}
+    <tr>
+      <td><strong>{{ r.ticker }}</strong></td>
+      <td class="{{ r.signal | lower }}">{{ r.signal }}</td>
+      <td>
+        {{ "%+.3f" | format(r.composite_score) }}
+        <span class="score-bar-wrap">
+          {% set pct = ((r.composite_score + 1) / 2 * 100) | round | int %}
+          {% set bar_color = 'pos' if r.composite_score > 0 else 'neg' %}
+          <span class="score-bar {{ bar_color }}" style="width:{{ pct }}%"></span>
+        </span>
+      </td>
+      <td>{{ "%+.1f%%" | format(r.price_14d_change or 0) }}</td>
+      <td>
+        {% for tf in r.top_factors[:2] %}
+          <div style="margin-bottom:2px">{{ tf[:100] }}</div>
+        {% endfor %}
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<!-- ── Key Factors ───────────────────────────────────────────────────── -->
+<h2>Key Factors (Current Cycle)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Sentiment</th>
+      <th>Mag</th>
+      <th>Age</th>
+      <th>Score</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for f in factors[:20] %}
+    <tr>
+      <td>
+        <span class="badge badge-{{ f.category if f.category in ['earnings','tariffs','geopolitics','ai_demand','supply_chain','rates'] else 'default' }}">
+          {{ f.category }}
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">{{ f.description[:120] }}</div>
+        {% if f.evidence %}
+        <div class="factor-meta">"{{ f.evidence[0][:100] }}"</div>
+        {% endif %}
+      </td>
+      <td class="{{ 'buy' if f.sentiment == 'positive' else ('sell' if f.sentiment == 'negative' else 'hold') }}">
+        {{ f.sentiment }}
+      </td>
+      <td>{{ f.magnitude }}</td>
+      <td>{{ "%.0f" | format(f.recency_days or 0) }}d</td>
+      <td>{{ "%+.2f" | format(f.raw_score or 0) }}</td>
+      <td style="font-size:0.8rem">{{ f.affected_tickers | join(', ') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<!-- ── Forward Factors ──────────────────────────────────────────────── -->
+<h2>Forward-Looking Factors (1–2 Week Outlook)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Direction</th>
+      <th>Confidence</th>
+      <th>Horizon</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ff in forward_factors %}
+    <tr>
+      <td>
+        <span class="badge badge-{{ ff.category if ff.category in ['earnings','tariffs','geopolitics','ai_demand','supply_chain','rates'] else 'default' }}">
+          {{ ff.category }}
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">{{ ff.description[:120] }}</div>
+        {% if ff.reasoning %}
+        <div class="factor-meta">{{ ff.reasoning[:100] }}</div>
+        {% endif %}
+      </td>
+      <td>
+        <span class="forward-dir {{ ff.expected_direction }}">
+          {{ ff.expected_direction | replace('_', ' ') }}
+        </span>
+      </td>
+      <td>{{ "%.0f%%" | format((ff.confidence or 0) * 100) }}</td>
+      <td>{{ ff.time_horizon_days }}d</td>
+      <td style="font-size:0.8rem">{{ ff.affected_tickers | join(', ') }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+
+<!-- ── Signal History ────────────────────────────────────────────────── -->
+{% if historical_recs %}
+<h2>Historical Signal Trend</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Recent Signals (oldest → newest)</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% set tickers_seen = namespace(v=[]) %}
+    {% for ticker in recommendations | map(attribute='ticker') | list %}
+    {% if ticker not in tickers_seen.v %}
+    {% set _ = tickers_seen.v.append(ticker) %}
+    <tr>
+      <td><strong>{{ ticker }}</strong></td>
+      <td>
+        {% for r in historical_recs | selectattr('ticker', 'equalto', ticker) | list | reverse %}
+        <span class="history-chip chip-{{ r.signal }}" title="{{ r.timestamp[:16] }}">{{ r.signal[0] }}</span>
+        {% endfor %}
+      </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endif %}
+
+<div class="disclaimer">
+  ⚠️ This report is generated by an AI agent for informational purposes only.
+  It does not constitute financial advice. Always do your own research before making investment decisions.
+  Data sources: web search, Google News RSS, yfinance. Powered by {{ model }}.
+</div>
+
+</body>
+</html>
