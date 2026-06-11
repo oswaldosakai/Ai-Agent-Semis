@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semis Factor Analysis — 2026-06-11 01:28 UTC</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3e;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --cyan: #22d3ee;
+    --purple: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; padding: 24px; }
+  h1 { font-size: 1.6rem; color: var(--cyan); margin-bottom: 4px; }
+  .meta { color: var(--muted); margin-bottom: 24px; font-size: 0.85rem; }
+  h2 { font-size: 1.1rem; color: var(--purple); margin: 28px 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--surface); color: var(--muted); text-align: left; padding: 8px 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  .buy { color: var(--green); font-weight: 700; }
+  .sell { color: var(--red); font-weight: 700; }
+  .hold { color: var(--yellow); font-weight: 600; }
+  .score-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; width: 120px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+  .score-bar { height: 100%; border-radius: 4px; }
+  .pos { background: var(--green); }
+  .neg { background: var(--red); }
+  .neutral-bar { background: var(--yellow); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; }
+  .badge-earnings { background: #1e3a5f; color: #60a5fa; }
+  .badge-tariffs { background: #3b1f1f; color: #f87171; }
+  .badge-geopolitics { background: #3b2d1f; color: #fb923c; }
+  .badge-ai_demand { background: #1e3b2e; color: #4ade80; }
+  .badge-supply_chain { background: #2d2b1e; color: #fbbf24; }
+  .badge-rates { background: #2d1e3b; color: #c084fc; }
+  .badge-default { background: var(--surface); color: var(--muted); }
+  .factor-desc { color: var(--text); }
+  .factor-meta { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+  .forward-dir { font-size: 0.8rem; font-weight: 600; }
+  .intensify_positive { color: var(--green); }
+  .intensify_negative { color: var(--red); }
+  .diminish { color: var(--muted); }
+  .persist { color: var(--yellow); }
+  .reverse { color: var(--cyan); }
+  .history-chip { display: inline-block; width: 28px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin: 1px; }
+  .chip-BUY { background: rgba(34,197,94,0.2); color: var(--green); border: 1px solid var(--green); }
+  .chip-SELL { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid var(--red); }
+  .chip-HOLD { background: rgba(234,179,8,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+  .disclaimer { color: var(--muted); font-size: 0.78rem; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Semiconductor Factor Analysis</h1>
+<div class="meta">Run: 2026-06-11 01:28 UTC &nbsp;|&nbsp; Model: claude-sonnet-4-6 &nbsp;|&nbsp; Thresholds: BUY ≥ 0.35 / SELL ≤ -0.35</div>
+
+
+<!-- ── Signal Summary ────────────────────────────────────────────────── -->
+<h2>Signal Summary</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Signal</th>
+      <th>Composite Score</th>
+      <th>14-Day Price % <span style="font-weight:400;color:var(--muted)">(past)</span></th>
+      <th>Top Factors</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><strong>TSM</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.365
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:68%"></span>
+        </span>
+      </td>
+      <td>
+        -0.9%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXS</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.227
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:61%"></span>
+        </span>
+      </td>
+      <td>
+        +4.5%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>ASML</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.111
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:56%"></span>
+        </span>
+      </td>
+      <td>
+        +6.3%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Escalating China-Taiwan geopolitical tensions pose severe risks to global semiconductor supply chain
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-05-28]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AMAT</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.090
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:55%"></span>
+        </span>
+      </td>
+      <td>
+        +9.3%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom flagged ongoing supply chain constraints at TSMC due to soaring AI chip demand, with TSMC c
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXX</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.042
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:52%"></span>
+        </span>
+      </td>
+      <td>
+        -5.0%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SMH</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.041
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:52%"></span>
+        </span>
+      </td>
+      <td>
+        -5.2%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXL</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.008
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:50%"></span>
+        </span>
+      </td>
+      <td>
+        -20.0%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>LRCX</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.006
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:50%"></span>
+        </span>
+      </td>
+      <td>
+        -0.3%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom flagged ongoing supply chain constraints at TSMC due to soaring AI chip demand, with TSMC c
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>NVDA</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.020
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:49%"></span>
+        </span>
+      </td>
+      <td>
+        -6.6%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>MU</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.035
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:48%"></span>
+        </span>
+      </td>
+      <td>
+        -0.5%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Semiconductor industry faces potential inventory cycle risks; historical boom-bust patterns suggest 
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-05-12]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AMD</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.061
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:47%"></span>
+        </span>
+      </td>
+      <td>
+        -10.2%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>INTC</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.156
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:42%"></span>
+        </span>
+      </td>
+      <td>
+        -13.3%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record re
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-08]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>QCOM</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.283
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:36%"></span>
+        </span>
+      </td>
+      <td>
+        -22.9%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Wharton professor Siegel warned investors to be careful around temporary surges in chip stock profit
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AVGO</strong></td>
+      <td class="sell">SELL</td>
+      <td>
+        -0.407
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:30%"></span>
+        </span>
+      </td>
+      <td>
+        -11.8%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip s
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-03]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor sello
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-05]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Key Factors ───────────────────────────────────────────────────── -->
+<h2>Key Factors (Current Cycle)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Sentiment</th>
+      <th>Mag</th>
+      <th>Age</th>
+      <th>Score</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">NVIDIA approaching earnings with Wall Street consensus projecting non-GAAP EPS of $1.78 on record revenue of $79.2 billi</div>
+        
+        <div class="factor-meta">"Wall Street&#39;s consensus is hovering at a breathtaking bar, with analysts projecting a non-GAAP profi"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>4</td>
+      <td>3d</td>
+      <td>+3.56</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, TSM, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Broadcom reported weaker-than-expected Q2 2026 earnings, causing a 12% stock drop and leading chip stocks broadly lower</div>
+        
+        <div class="factor-meta">"Broadcom lost 12% after the company, which designs and makes customized artificial intelligence chip"</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>4</td>
+      <td>8d</td>
+      <td>-2.52</td>
+      <td style="font-size:0.8rem">AVGO, NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Intel approaching earnings call with market focus on direction and volatility; stock down sharply over 14 days amid comp</div>
+        
+        <div class="factor-meta">"Intel is positive ahead of Thursday&#39;s earnings call."</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>2</td>
+      <td>3d</td>
+      <td>-2.07</td>
+      <td style="font-size:0.8rem">INTC</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-rates">
+          rates
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Strong May jobs report increased Fed rate hike odds, triggering a broad tech and semiconductor selloff as investors repr</div>
+        
+        <div class="factor-meta">"A strong jobs report increased the likelihood that the Federal Reserve would raise rates to fight in"</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>4</td>
+      <td>6d</td>
+      <td>-1.98</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, TSM, ASML, MU, AMAT, LRCX, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-supply_chain">
+          supply_chain
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Broadcom flagged ongoing supply chain constraints at TSMC due to soaring AI chip demand, with TSMC capacity remaining ti</div>
+        
+        <div class="factor-meta">"Broadcom said it is continuing to see supply chain constraints hit the technology sector, including "</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>3</td>
+      <td>8d</td>
+      <td>-1.48</td>
+      <td style="font-size:0.8rem">AVGO, TSM, NVDA, AMD, AMAT, LRCX</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          macro
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Wharton professor Siegel warned investors to be careful around temporary surges in chip stock profitability, citing loft</div>
+        
+        <div class="factor-meta">"Wharton School of Business&#39; Siegel: Be careful around temporary surges in profitability in chip stoc"</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>2</td>
+      <td>6d</td>
+      <td>-0.99</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-geopolitics">
+          geopolitics
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Escalating China-Taiwan geopolitical tensions pose severe risks to global semiconductor supply chains given TSMC&#39;s domin</div>
+        
+        <div class="factor-meta">"Escalating geopolitical tensions between China and Taiwan are sending shockwaves through the global "</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>3</td>
+      <td>14d</td>
+      <td>-0.89</td>
+      <td style="font-size:0.8rem">TSM, NVDA, AMD, INTC, QCOM, AVGO, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          china_risk
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">US export controls on advanced semiconductors to China continue to restrict market access; policy gaps and cloud computi</div>
+        
+        <div class="factor-meta">"US semiconductor export controls have disrupted China&#39;s chip industry, but loopholes, especially in "</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>3</td>
+      <td>14d</td>
+      <td>-0.81</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, AMAT, LRCX, ASML</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">US semiconductor capital spending market projected to grow at 5.7% CAGR from 2025-2030, adding $12.67 billion, driven by</div>
+        
+        <div class="factor-meta">"The us semiconductor capital spending market size is valued to increase by USD 12.67 billion, at a C"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>2</td>
+      <td>14d</td>
+      <td>+0.49</td>
+      <td style="font-size:0.8rem">INTC, TSM, AMAT, LRCX, ASML</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          inventory
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Semiconductor industry faces potential inventory cycle risks; historical boom-bust patterns suggest risk of oversupply i</div>
+        
+        <div class="factor-meta">"Despite the current supply chain shortage, some might be surprised to find out that many warehouses "</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>2</td>
+      <td>30d</td>
+      <td>-0.11</td>
+      <td style="font-size:0.8rem">MU, INTC, AMD, QCOM, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">AI Data Center GPU market projected at $32.3 billion opportunity through 2030, driven by generative AI, sovereign AI inf</div>
+        
+        <div class="factor-meta">"Key market opportunities for AI data center GPUs include growth driven by expanding generative AI, s"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>2</td>
+      <td>58d</td>
+      <td>+0.01</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, TSM, AVGO, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">SK Hynix placed a record $7.9 billion EUV lithography equipment order with ASML, the largest single EUV order ever publi</div>
+        
+        <div class="factor-meta">"SK hynix disclosed in a regulatory filing on Tuesday that it will purchase 11.9 trillion won ($7.9 b"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>4</td>
+      <td>77d</td>
+      <td>+0.00</td>
+      <td style="font-size:0.8rem">ASML, MU, AMAT, LRCX</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Forward Factors ──────────────────────────────────────────────── -->
+<h2>Forward-Looking Factors (1–2 Week Outlook)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Direction</th>
+      <th>Confidence</th>
+      <th>Horizon</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Broadcom Q2 2026 earnings miss aftermath continues to weigh on chip sector sentiment, but post-earnings mean-reversion l</div>
+        
+        <div class="factor-meta">Post-earnings selloffs in semiconductors historically mean-revert within 5-7 trading days as the ini</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir diminish">
+          diminish
+        </span>
+      </td>
+      <td>72%</td>
+      <td>7d</td>
+      <td style="font-size:0.8rem">AVGO, NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">NVIDIA approaching earnings with record revenue expectations of $79.2B; results will be a major sector catalyst and coul</div>
+        
+        <div class="factor-meta">NVIDIA earnings represent the single most important near-term catalyst for the entire semiconductor </div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>78%</td>
+      <td>10d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, TSM, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-rates">
+          rates
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Fed rate hike repricing following strong jobs report continues to pressure high-multiple semiconductor stocks</div>
+        
+        <div class="factor-meta">Historical pattern shows rates have been consistently negative across all 2 prior cycles with no rev</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>65%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, TSM, ASML, MU, AMAT, LRCX, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">SK Hynix $7.9B record EUV order with ASML reinforces sustained equipment spending cycle; positive momentum likely to int</div>
+        
+        <div class="factor-meta">Historical capex sentiment has been uniformly positive across all 6 prior cycles, indicating strong </div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>75%</td>
+      <td>10d</td>
+      <td style="font-size:0.8rem">ASML, MU, AMAT, LRCX</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">US semiconductor capital spending CAGR of 5.7% under CHIPS Act provides steady long-term tailwind</div>
+        
+        <div class="factor-meta">CHIPS Act-driven capex is a slow-moving structural factor with no near-term catalysts to accelerate </div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>70%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">INTC, TSM, AMAT, LRCX, ASML</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-supply_chain">
+          supply_chain
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">TSMC capacity constraints flagged by Broadcom persist amid AI chip demand surge; near-term resolution unlikely</div>
+        
+        <div class="factor-meta">Supply chain constraints at TSMC are structural in nature given the 18-24 month lead times for advan</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>68%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">AVGO, TSM, NVDA, AMD, AMAT, LRCX</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">AI data center GPU demand narrative remains structurally intact ahead of NVIDIA earnings; positive sentiment likely to i</div>
+        
+        <div class="factor-meta">AI demand has shown 4 consecutive positive readings in historical data with no negative instances, i</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>80%</td>
+      <td>10d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, TSM, AVGO, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          china_risk
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">US export controls on advanced semiconductors to China remain a persistent headwind with no near-term policy resolution </div>
+        
+        <div class="factor-meta">China risk has been negative in 2 of 3 historical cycles with 1 neutral reading, showing a persisten</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>72%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, AMAT, LRCX, ASML</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-geopolitics">
+          geopolitics
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">China-Taiwan tensions remain elevated as a structural risk to semiconductor supply chains</div>
+        
+        <div class="factor-meta">Geopolitical risk has been negative in 3 of 4 historical cycles. Taiwan Strait tensions are a slow-m</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>65%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">TSM, NVDA, AMD, INTC, QCOM, AVGO, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          macro
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Valuation concerns around lofty semiconductor expectations cited by Wharton&#39;s Siegel may diminish if NVIDIA earnings val</div>
+        
+        <div class="factor-meta">Macro valuation warnings are low-magnitude (2) sentiment factors that tend to diminish when hard ear</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir diminish">
+          diminish
+        </span>
+      </td>
+      <td>60%</td>
+      <td>10d</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          inventory
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Semiconductor inventory cycle risk remains a background concern but is unlikely to intensify in the near term given AI d</div>
+        
+        <div class="factor-meta">Historical inventory sentiment shifted from neutral to negative, suggesting emerging concern. Howeve</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir diminish">
+          diminish
+        </span>
+      </td>
+      <td>55%</td>
+      <td>14d</td>
+      <td style="font-size:0.8rem">MU, INTC, AMD, QCOM, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">Intel earnings approaching with stock under pressure; results could catalyze further downside or a relief rally dependin</div>
+        
+        <div class="factor-meta">Intel has been underperforming for 14+ days amid competitive AI pressures and the stock is already p</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_negative">
+          intensify negative
+        </span>
+      </td>
+      <td>62%</td>
+      <td>10d</td>
+      <td style="font-size:0.8rem">INTC</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Signal History ────────────────────────────────────────────────── -->
+
+<h2>Historical Signal Trend</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Recent Signals (oldest → newest)</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+    
+    
+    <tr>
+      <td><strong>NVDA</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 23:16">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AMD</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 23:16">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>INTC</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 04:42">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>QCOM</strong></td>
+      <td>
+        
+        <span class="history-chip chip-SELL" title="2026-06-10 04:42">S</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 12:33">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AVGO</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 04:42">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 12:33">H</span>
+        
+        <span class="history-chip chip-SELL" title="2026-06-10 17:44">S</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-SELL" title="2026-06-11 01:28">S</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>TSM</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 12:33">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 23:16">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-11 01:28">B</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>ASML</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 12:33">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 17:44">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>MU</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 04:42">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 17:44">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 23:16">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AMAT</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 12:33">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 17:44">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>LRCX</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 12:33">H</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 17:44">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXX</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 17:44">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SMH</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXS</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 04:42">H</span>
+        
+        <span class="history-chip chip-SELL" title="2026-06-10 12:33">S</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 17:44">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 23:16">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXL</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 04:42">B</span>
+        
+        <span class="history-chip chip-BUY" title="2026-06-10 12:33">B</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 17:44">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-10 23:16">H</span>
+        
+        <span class="history-chip chip-HOLD" title="2026-06-11 01:28">H</span>
+        
+      </td>
+    </tr>
+    
+    
+  </tbody>
+</table>
+</div>
+
+
+<div class="disclaimer">
+  ⚠️ This report is generated by an AI agent for informational purposes only.
+  It does not constitute financial advice. Always do your own research before making investment decisions.
+  Data sources: web search, Google News RSS, yfinance. Powered by claude-sonnet-4-6.
+</div>
+
+</body>
+</html>
