@@ -125,8 +125,9 @@ Factor categories: {', '.join(config.FACTOR_CATEGORIES)}
 
 === INSTRUCTIONS ===
 Extract all significant investment factors from the snippets above.
+- ALWAYS start the description with the event date in brackets, e.g. "[2026-06-05] Broadcom missed..."
+- Set event_date to the same date (YYYY-MM-DD format)
 - Set recency_days to the approximate age of the event in days (0=today, 7=one week ago)
-- Set event_date to the actual calendar date the event occurred (YYYY-MM-DD format)
 - affected_tickers should list only symbols from the universe above
 - If a factor affects the whole sector, list all relevant tickers
 - evidence should be 1-3 short quotes from the snippets
@@ -177,9 +178,16 @@ def predict_forward_factors(current_factors: list[dict], historical_factors: lis
 
 Universe: {', '.join(config.ALL_SYMBOLS)}
 
+Today's date: {datetime.utcnow().date().isoformat()}
+
 Analyze which factors will intensify, persist, or diminish over the next 1–14 days.
 Focus on: event timelines (upcoming earnings, scheduled Fed meetings, supply deadlines),
 trend momentum, and mean-reversion dynamics.
+
+- ALWAYS start each description with the expected relevant date or date range in brackets,
+  e.g. "[2026-06-12 to 2026-06-18] Fed meeting expected to hold rates..."
+  or "[2026-06-15] NVDA earnings call scheduled..."
+- reasoning should also reference specific dates where applicable.
 
 Return a JSON array following this schema:
 {json.dumps(PREDICTION_SCHEMA, indent=2)}

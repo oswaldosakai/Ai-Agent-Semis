@@ -123,7 +123,7 @@
       <th>Factor</th>
       <th>Sentiment</th>
       <th>Mag</th>
-      <th>Age</th>
+      <th>Event Date</th>
       <th>Score</th>
       <th>Tickers</th>
     </tr>
@@ -146,7 +146,9 @@
         {{ f.sentiment }}
       </td>
       <td>{{ f.magnitude }}</td>
-      <td>{{ "%.0f" | format(f.recency_days or 0) }}d</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        {{ f.event_date if f.event_date else ("%.0f" | format(f.recency_days or 0)) + "d ago" }}
+      </td>
       <td>{{ "%+.2f" | format(f.raw_score or 0) }}</td>
       <td style="font-size:0.8rem">{{ f.affected_tickers | join(', ') }}</td>
     </tr>
@@ -165,7 +167,7 @@
       <th>Factor</th>
       <th>Direction</th>
       <th>Confidence</th>
-      <th>Horizon</th>
+      <th>Expected By</th>
       <th>Tickers</th>
     </tr>
   </thead>
@@ -189,7 +191,9 @@
         </span>
       </td>
       <td>{{ "%.0f%%" | format((ff.confidence or 0) * 100) }}</td>
-      <td>{{ ff.time_horizon_days }}d</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +{{ ff.time_horizon_days }}d
+      </td>
       <td style="font-size:0.8rem">{{ ff.affected_tickers | join(', ') }}</td>
     </tr>
     {% endfor %}
