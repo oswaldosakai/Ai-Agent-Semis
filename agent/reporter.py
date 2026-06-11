@@ -53,10 +53,10 @@ def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: s
         )
     console.print(table)
 
-    # ── Top factors ──────────────────────────────────────────────────────────
+    # ── Top factors with deep-dive narratives ────────────────────────────────
     console.rule("[bold]Key Factors This Cycle[/bold]")
     top = sorted(factors, key=lambda x: abs(x.get("raw_score", 0)), reverse=True)[:8]
-    for f in top:
+    for i, f in enumerate(top):
         sentiment_icon = {"positive": "↑", "negative": "↓", "neutral": "→"}.get(f.get("sentiment"), "")
         color = {"positive": "green", "negative": "red", "neutral": "white"}.get(f.get("sentiment"), "white")
         console.print(
@@ -64,6 +64,11 @@ def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: s
             f"{f.get('description','')[:120]} "
             f"[dim](mag={f.get('magnitude')}, {f.get('recency_days',0):.0f}d ago)[/dim]"
         )
+        if i < 3 and f.get("narrative"):
+            # Wrap narrative text at 100 chars for clean terminal display
+            narrative = f["narrative"]
+            for line in [narrative[j:j+100] for j in range(0, min(len(narrative), 300), 100)]:
+                console.print(f"    [dim]{line}[/dim]")
 
 
 def _load_template():

@@ -12,6 +12,7 @@ import agent.recommender as recommender
 import agent.reporter as reporter
 import agent.state_store as state_store
 import agent.backtester as backtester
+import agent.researcher as researcher
 
 console = Console()
 
@@ -59,7 +60,15 @@ def run_cycle(report_html: bool = True) -> list[dict]:
         console.print(f"  [red]Factor extraction failed: {e}[/red]")
         current_factors = []
 
-    # 4. Forward prediction ──────────────────────────────────────────────────
+    # 4. Deep-dive narratives for top 3 factors ──────────────────────────────
+    if current_factors:
+        console.print("  [dim]Researching top 3 factors in depth…[/dim]")
+        try:
+            current_factors = researcher.research_top_factors(current_factors, top_n=3)
+        except Exception as e:
+            console.print(f"  [yellow]  → Factor research skipped: {e}[/yellow]")
+
+    # 6. Forward prediction ──────────────────────────────────────────────────
     console.print("  [dim]Predicting forward factors with Claude…[/dim]")
     historical_factors = state_store.get_recent_factors(n_runs=3)
     try:
@@ -69,17 +78,17 @@ def run_cycle(report_html: bool = True) -> list[dict]:
         console.print(f"  [red]Forward prediction failed: {e}[/red]")
         forward_factors = []
 
-    # 5. Recommendations ─────────────────────────────────────────────────────
+    # 7. Recommendations ─────────────────────────────────────────────────────
     console.print("  [dim]Computing recommendations…[/dim]")
     recs = recommender.compute_scores(current_factors, forward_factors, price_data)
 
-    # 6. Persist ─────────────────────────────────────────────────────────────
+    # 8. Persist ─────────────────────────────────────────────────────────────
     state_store.save_run(run_id, run_ts, config.CLAUDE_MODEL, len(snippets))
     state_store.save_factors(run_id, current_factors)
     state_store.save_recommendations(run_id, recs)
     state_store.purge_old_data()
 
-    # 7. Report ──────────────────────────────────────────────────────────────
+    # 9. Report ──────────────────────────────────────────────────────────────
     reporter.print_cli_report(recs, current_factors, run_ts,
                               data_note="[Estimated via Claude knowledge — live data unavailable]" if news_fallback else None)
 

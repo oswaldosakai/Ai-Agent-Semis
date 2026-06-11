@@ -113,6 +113,39 @@
 </table>
 </div>
 
+<!-- ── Factor Deep Dives ─────────────────────────────────────────────── -->
+{% set top_narrative_factors = factors | selectattr('narrative', 'defined') | selectattr('narrative') | list %}
+{% if top_narrative_factors %}
+<h2>Factor Deep Dives — Top 3 Most Impactful</h2>
+{% for f in top_narrative_factors[:3] %}
+<div class="section-card" style="margin-bottom:14px">
+  <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px">
+    <span class="badge badge-{{ f.category if f.category in ['earnings','tariffs','geopolitics','ai_demand','supply_chain','rates'] else 'default' }}" style="flex-shrink:0;margin-top:2px">
+      {{ f.category }}
+    </span>
+    <div>
+      <div style="font-weight:600;color:var(--text)">{{ f.description }}</div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:3px">
+        <span class="{{ 'buy' if f.sentiment == 'positive' else ('sell' if f.sentiment == 'negative' else 'hold') }}">{{ f.sentiment }}</span>
+        &nbsp;|&nbsp; magnitude {{ f.magnitude }}/5
+        &nbsp;|&nbsp; <span style="color:var(--cyan)">{{ f.event_date if f.event_date else 'recent' }}</span>
+        &nbsp;|&nbsp; {{ f.affected_tickers | join(', ') }}
+      </div>
+    </div>
+    <div style="margin-left:auto;text-align:right;flex-shrink:0">
+      <span style="font-size:1.1rem;font-weight:700;color:{{ 'var(--green)' if f.raw_score > 0 else 'var(--red)' }}">
+        {{ '%+.2f' | format(f.raw_score) }}
+      </span>
+      <div style="font-size:0.7rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  <div style="color:var(--text);line-height:1.7;font-size:0.9rem;border-top:1px solid var(--border);padding-top:10px">
+    {{ f.narrative }}
+  </div>
+</div>
+{% endfor %}
+{% endif %}
+
 <!-- ── Key Factors ───────────────────────────────────────────────────── -->
 <h2>Key Factors (Current Cycle)</h2>
 <div class="section-card">
