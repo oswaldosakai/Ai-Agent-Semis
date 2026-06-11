@@ -166,37 +166,80 @@ def _claude_knowledge_snippets() -> tuple[list[dict], dict]:
     global _knowledge_cache
     if _knowledge_cache is not None:
         return _knowledge_cache
-    """Ask Claude to surface recent semiconductor market context from its knowledge."""
+    """Ask Claude to surface recent semiconductor market context, grounded in known events."""
     import anthropic
     client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
     today = datetime.utcnow().date().isoformat()
 
+    # Inject the specific real-world events we researched so Claude reasons from fact not fiction
+    KNOWN_EVENTS = """
+CONFIRMED EVENTS (use these as the backbone of your analysis, add detail/context):
+
+1. [2026-06-03] Broadcom (AVGO) Q2 FY2026 earnings: AI semiconductor revenue $10.8B (+143% YoY),
+   but infrastructure software revenue $7.18B missed $7.32B consensus. Stock fell ~14%.
+   Q3 guidance: AI semi revenue to grow >200% YoY to $16B, total rev ~$29.4B vs $28.5B expected.
+   Despite beat on AI, software miss + "priced for perfection" dynamic triggered sector-wide selloff.
+
+2. [2026-06-04] Nasdaq fell 4%, worst day since April 2025. AVGO down 14%, INTC down 11.28%,
+   AMD down 10.86%, MU down ~7%. Philadelphia Semiconductor Index (SOX) dropped ~10.3% — steepest
+   single-day fall since 2020. Over $1 trillion wiped from chip stocks.
+
+3. [2026-06-05 to 06-10] Second consecutive day of declines on June 10. MU down >4%, NVDA down >2%,
+   AMD down >3.5%, INTC down >2%. Continued AVGO contagion.
+
+4. [2026-06-09] US-Iran military escalation: US struck Iranian sites near Strait of Hormuz after
+   Iran downed a US Apache helicopter off Oman coast. S&P 500 fell 1.6%, Nasdaq fell ~2%,
+   Dow fell 950 points. Energy prices spiked. Semiconductor names hit hardest.
+
+5. [2026-05] Nonfarm payrolls for May came in at 172,000 — well above 80,000 expected —
+   reducing hopes for near-term Fed rate cuts. Higher-for-longer rates weigh on high-multiple
+   chip stocks.
+
+6. [2026-Q1/Q2] Memory crisis: HBM demand from hyperscalers (MSFT, GOOG, META, AMZN) is
+   diverting Samsung, SK Hynix, and Micron capacity away from consumer DRAM/NAND.
+   IDC forecasts global smartphone market to decline 13.9% in 2026 — sharpest on record.
+   QCOM and INTC particularly exposed to smartphone/PC weakness.
+
+7. [2026-01] Trump Section 232 tariff: 25% ad valorem tariff on narrow category of advanced
+   semiconductors. BIS export control expansion covering H200, MI325X and similar chips
+   to PRC/Macau — case-by-case license review now required.
+
+8. [2026-06-01] US clarified AI chip shipment ban applies to Chinese firms outside China,
+   closing loophole. NVDA and AMD most directly exposed.
+"""
+
     resp = client.messages.create(
         model=config.CLAUDE_MODEL,
-        max_tokens=3000,
-        temperature=0.3,
+        max_tokens=3500,
+        temperature=0.2,
         system=(
-            "You are a semiconductor equity analyst with up-to-date knowledge of the market. "
+            "You are a semiconductor equity analyst. You have access to confirmed recent market events. "
+            "Generate structured market intelligence grounded in the provided facts. "
             "Return ONLY valid JSON — no markdown, no explanation."
         ),
         messages=[{"role": "user", "content": f"""Today is {today}.
 
-Generate a realistic semiconductor market intelligence report covering the last 14 days.
-Include news events, earnings, macro factors, geopolitical developments, and supply/demand signals
-that are plausibly current for the semiconductor sector.
+{KNOWN_EVENTS}
+
+Using the confirmed events above as your primary source, generate a semiconductor market
+intelligence report for the last 14 days.
 
 Return a JSON object with two keys:
 
-1. "snippets": array of 15-20 news items, each with:
+1. "snippets": array of 18-22 news items that elaborate on the confirmed events above
+   plus any relevant supporting context. Each item:
    {{"source": string, "url": "", "snippet": string (150-300 chars), "date": "YYYY-MM-DD"}}
+   Dates must be realistic (within last 14 days). Be specific — name tickers, dollar amounts,
+   percentages.
 
-2. "price_estimates": object mapping each ticker to estimated 14-day price change %, e.g.:
-   {{"NVDA": 8.5, "AMD": 3.2, "INTC": -2.1, "QCOM": 1.5, "AVGO": 4.0,
-     "TSM": 5.5, "ASML": 2.8, "MU": 6.1, "AMAT": 3.3, "LRCX": 2.9,
-     "SOXX": 4.2, "SMH": 4.5, "SOXS": -4.2, "SOXL": 8.4}}
-
-Base estimates on realistic recent sector dynamics (AI demand cycle, China export controls,
-inventory normalization, capex trends). Be specific and realistic.
+2. "price_estimates": 14-day price change % for each ticker reflecting the selloff:
+   {{
+     "NVDA": <float>, "AMD": <float>, "INTC": <float>, "QCOM": <float>, "AVGO": <float>,
+     "TSM": <float>, "ASML": <float>, "MU": <float>, "AMAT": <float>, "LRCX": <float>,
+     "SOXX": <float>, "SMH": <float>, "SOXS": <float>, "SOXL": <float>
+   }}
+   Use realistic values reflecting: AVGO -14%, INTC -11%, AMD -10.9%, MU -7%, sector-wide
+   SOX -10.3% over the period, with some partial recovery since then.
 """}],
     )
 
