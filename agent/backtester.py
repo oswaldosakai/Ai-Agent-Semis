@@ -226,9 +226,10 @@ def print_accuracy_table(stats: dict):
         table.add_row(sig, str(s["correct"]), str(s["incorrect"]), str(s["neutral"]), f"{acc}%")
 
     overall = stats.get("overall_accuracy_pct", 0)
+    color = "green" if overall >= 60 else "yellow" if overall >= 40 else "red"
     table.add_row(
         "[bold]TOTAL[/bold]",
         "", "", "",
-        f"[bold]{'green' if overall >= 60 else 'yellow'}]{overall}%[/[/bold]",
+        f"[bold {color}]{overall}%[/bold {color}]",
     )
     console.print(table)

@@ -163,10 +163,10 @@ _knowledge_cache: tuple[list[dict], dict] | None = None
 
 
 def _claude_knowledge_snippets() -> tuple[list[dict], dict]:
+    """Ask Claude to surface recent semiconductor market context, grounded in known events."""
     global _knowledge_cache
     if _knowledge_cache is not None:
         return _knowledge_cache
-    """Ask Claude to surface recent semiconductor market context, grounded in known events."""
     import anthropic
     client = anthropic.Anthropic(api_key=config.ANTHROPIC_API_KEY)
     today = datetime.utcnow().date().isoformat()
@@ -207,6 +207,18 @@ CONFIRMED EVENTS (use these as the backbone of your analysis, add detail/context
 8. [2026-06-01] US clarified AI chip shipment ban applies to Chinese firms outside China,
    closing loophole. NVDA and AMD most directly exposed.
 """
+
+    # Staleness guard: the researched events above anchor to mid-June 2026.
+    # If we're more than 21 days past that, stop treating them as current —
+    # tell Claude they are historical context only.
+    KNOWN_EVENTS_ANCHOR = datetime(2026, 6, 11)
+    days_stale = (datetime.utcnow() - KNOWN_EVENTS_ANCHOR).days
+    if days_stale > 21:
+        KNOWN_EVENTS = (
+            f"HISTORICAL CONTEXT (events from ~{days_stale} days ago — do NOT present as current; "
+            "use only as background and reason about what has plausibly evolved since):\n"
+            + KNOWN_EVENTS
+        )
 
     resp = client.messages.create(
         model=config.CLAUDE_MODEL,

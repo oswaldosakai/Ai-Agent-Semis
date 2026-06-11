@@ -71,7 +71,39 @@ def init_db():
                 reasoning TEXT,
                 accuracy_pct REAL
             );
+
+            CREATE TABLE IF NOT EXISTS self_reviews (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT NOT NULL,
+                quality_score REAL,
+                critique TEXT,
+                tuning TEXT,
+                code_suggestions TEXT
+            );
         """)
+
+
+def save_self_review(score, critique: str, tuning: dict, code_suggestions: list):
+    with _conn() as conn:
+        conn.execute(
+            "INSERT INTO self_reviews (timestamp, quality_score, critique, tuning, code_suggestions) VALUES (?,?,?,?,?)",
+            (datetime.utcnow().isoformat(), score, critique,
+             json.dumps(tuning), json.dumps(code_suggestions)),
+        )
+
+
+def get_recent_self_reviews(n: int = 5) -> list[dict]:
+    with _conn() as conn:
+        rows = conn.execute(
+            "SELECT * FROM self_reviews ORDER BY timestamp DESC LIMIT ?", (n,)
+        ).fetchall()
+    result = []
+    for row in rows:
+        d = dict(row)
+        d["tuning"] = json.loads(d.get("tuning") or "{}")
+        d["code_suggestions"] = json.loads(d.get("code_suggestions") or "[]")
+        result.append(d)
+    return result
 
 
 def save_weight_adjustment(adjustments: dict, reasoning: str, accuracy_pct: float):
