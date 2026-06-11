@@ -50,7 +50,7 @@
   .diminish { color: var(--muted); }
   .persist { color: var(--yellow); }
   .reverse { color: var(--cyan); }
-  .history-chip { display: inline-block; width: 28px; height: 22px; line-height: 22px; text-align: center; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin: 1px; }
+  .history-chip { display: inline-block; width: 38px; height: 36px; line-height: 1.2; padding-top: 4px; text-align: center; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin: 2px; vertical-align: top; }
   .chip-BUY { background: rgba(34,197,94,0.2); color: var(--green); border: 1px solid var(--green); }
   .chip-SELL { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid var(--red); }
   .chip-HOLD { background: rgba(234,179,8,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
@@ -205,11 +205,27 @@
 {% if historical_recs %}
 <h2>Historical Signal Trend</h2>
 <div class="section-card">
+
+<!-- Run timeline header -->
+{% set run_dates = historical_recs | map(attribute='timestamp') | list | unique | sort | list %}
+<div style="margin-bottom:12px;font-size:0.78rem;color:var(--muted)">
+  <strong style="color:var(--text)">Runs (oldest → newest):</strong>
+  {% for ts in run_dates | reverse %}
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#{{ loop.revindex }}</span>
+      {{ ts[:16] }}
+    </span>
+  {% endfor %}
+</div>
+
 <table>
   <thead>
     <tr>
       <th>Ticker</th>
-      <th>Recent Signals (oldest → newest)</th>
+      <th>
+        Recent Signals (oldest → newest)
+        <span style="font-weight:400;color:var(--muted);font-size:0.78rem"> — hover chip for run timestamp</span>
+      </th>
     </tr>
   </thead>
   <tbody>
@@ -221,7 +237,11 @@
       <td><strong>{{ ticker }}</strong></td>
       <td>
         {% for r in historical_recs | selectattr('ticker', 'equalto', ticker) | list | reverse %}
-        <span class="history-chip chip-{{ r.signal }}" title="{{ r.timestamp[:16] }}">{{ r.signal[0] }}</span>
+        <span class="history-chip chip-{{ r.signal }}"
+              title="{{ r.timestamp[:16] }} — score {{ '%+.3f' | format(r.composite_score) }}">
+          {{ r.signal[0] }}
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">{{ r.timestamp[5:10] }}</span>
+        </span>
         {% endfor %}
       </td>
     </tr>
