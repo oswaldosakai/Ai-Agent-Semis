@@ -50,7 +50,96 @@ def init_db():
                 price_14d_change REAL,
                 FOREIGN KEY(run_id) REFERENCES runs(run_id)
             );
+
+            CREATE TABLE IF NOT EXISTS signal_outcomes (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                run_id TEXT NOT NULL,
+                ticker TEXT,
+                signal TEXT,
+                composite_score REAL,
+                price_at_signal REAL,
+                price_at_next_run REAL,
+                actual_pct_change REAL,
+                outcome TEXT,
+                FOREIGN KEY(run_id) REFERENCES runs(run_id)
+            );
+
+            CREATE TABLE IF NOT EXISTS weight_adjustments (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                timestamp TEXT NOT NULL,
+                adjustments TEXT,
+                reasoning TEXT,
+                accuracy_pct REAL
+            );
         """)
+
+
+def save_weight_adjustment(adjustments: dict, reasoning: str, accuracy_pct: float):
+    with _conn() as conn:
+        conn.execute(
+            "INSERT INTO weight_adjustments (timestamp, adjustments, reasoning, accuracy_pct) VALUES (?,?,?,?)",
+            (datetime.utcnow().isoformat(), json.dumps(adjustments), reasoning, accuracy_pct),
+        )
+
+
+def get_latest_weight_adjustments() -> dict:
+    with _conn() as conn:
+        row = conn.execute(
+            "SELECT adjustments FROM weight_adjustments ORDER BY timestamp DESC LIMIT 1"
+        ).fetchone()
+    if row:
+        return json.loads(row["adjustments"])
+    return {}
+
+
+def save_signal_outcomes(outcomes: list[dict]):
+    with _conn() as conn:
+        conn.executemany(
+            """INSERT INTO signal_outcomes
+               (run_id, ticker, signal, composite_score, price_at_signal, price_at_next_run, actual_pct_change, outcome)
+               VALUES (?,?,?,?,?,?,?,?)""",
+            [
+                (
+                    o["run_id"], o["ticker"], o["signal"], o.get("composite_score"),
+                    o.get("price_at_signal"), o.get("price_at_next_run"),
+                    o.get("actual_pct_change"), o.get("outcome"),
+                )
+                for o in outcomes
+            ],
+        )
+
+
+def get_all_signal_outcomes(limit: int = 100) -> list[dict]:
+    with _conn() as conn:
+        rows = conn.execute(
+            "SELECT * FROM signal_outcomes ORDER BY id DESC LIMIT ?", (limit,)
+        ).fetchall()
+    return [dict(r) for r in rows]
+
+
+def get_paired_runs() -> list[tuple[dict, dict]]:
+    """Return consecutive run pairs (prev, next) for backtesting."""
+    with _conn() as conn:
+        runs = conn.execute(
+            "SELECT run_id, timestamp FROM runs ORDER BY timestamp ASC"
+        ).fetchall()
+    pairs = []
+    for i in range(len(runs) - 1):
+        pairs.append((dict(runs[i]), dict(runs[i + 1])))
+    return pairs
+
+
+def get_recommendations_for_run(run_id: str) -> list[dict]:
+    with _conn() as conn:
+        rows = conn.execute(
+            "SELECT * FROM recommendations WHERE run_id=?", (run_id,)
+        ).fetchall()
+    result = []
+    for row in rows:
+        d = dict(row)
+        d["top_factors"] = json.loads(d.get("top_factors") or "[]")
+        result.append(d)
+    return result
 
 
 def save_run(run_id: str, timestamp: str, model_used: str, search_count: int):

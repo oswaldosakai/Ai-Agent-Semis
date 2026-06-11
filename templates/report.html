@@ -201,6 +201,64 @@
 </table>
 </div>
 
+<!-- ── Backtest Accuracy ─────────────────────────────────────────────── -->
+{% if accuracy_stats and accuracy_stats.total_evaluated %}
+<h2>Backtest Accuracy — Past Signal vs Actual Move</h2>
+<div class="section-card">
+  <div style="margin-bottom:12px;font-size:0.85rem;color:var(--muted)">
+    Compares each past signal against the subsequent inter-run price move.
+    BUY = correct if price rose >1%, SELL = correct if price fell >1%, HOLD = correct if move within ±2%.
+  </div>
+  <table style="width:auto;margin-bottom:16px">
+    <thead>
+      <tr>
+        <th>Signal</th><th>Correct</th><th>Incorrect</th><th>Neutral</th><th>Accuracy</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for sig, s in accuracy_stats.by_signal.items() %}
+      <tr>
+        <td class="{{ sig | lower }}"><strong>{{ sig }}</strong></td>
+        <td style="color:var(--green)">{{ s.correct }}</td>
+        <td style="color:var(--red)">{{ s.incorrect }}</td>
+        <td style="color:var(--yellow)">{{ s.neutral }}</td>
+        <td>
+          {% set acc = (s.correct / (s.total or 1) * 100) | round | int %}
+          <span style="color:{{ 'var(--green)' if acc >= 60 else ('var(--yellow)' if acc >= 40 else 'var(--red)') }}">
+            {{ acc }}%
+          </span>
+        </td>
+      </tr>
+      {% endfor %}
+      <tr style="border-top:2px solid var(--border)">
+        <td><strong>OVERALL</strong></td>
+        <td colspan="3" style="color:var(--muted)">{{ accuracy_stats.total_evaluated }} outcomes</td>
+        <td>
+          <span style="font-weight:700;color:{{ 'var(--green)' if accuracy_stats.overall_accuracy_pct >= 60 else ('var(--yellow)' if accuracy_stats.overall_accuracy_pct >= 40 else 'var(--red)') }}">
+            {{ accuracy_stats.overall_accuracy_pct }}%
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  {% if weight_adjustments %}
+  <div style="margin-top:8px;padding:10px 14px;background:rgba(34,211,238,0.07);border:1px solid var(--cyan);border-radius:6px;font-size:0.85rem">
+    <strong style="color:var(--cyan)">⚙ Weight adjustments applied this cycle:</strong>
+    <div style="margin-top:6px">
+      {% for cat, w in weight_adjustments.items() %}
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">{{ cat }}:</span>
+          <span style="color:var(--text)">{{ category_weights[cat] if cat in category_weights else w }}</span>
+          <span style="color:var(--cyan)">(was adjusted to {{ w }})</span>
+        </span>
+      {% endfor %}
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif %}
+
 <!-- ── Signal History ────────────────────────────────────────────────── -->
 {% if historical_recs %}
 <h2>Historical Signal Trend</h2>

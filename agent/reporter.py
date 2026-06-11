@@ -82,6 +82,8 @@ def generate_html_report(
     run_ts: str,
     historical_recs: list[dict],
     data_estimated: bool = False,
+    accuracy_stats: Optional[dict] = None,
+    weight_adjustments: Optional[dict] = None,
 ) -> str:
     os.makedirs(config.REPORT_OUTPUT_DIR, exist_ok=True)
     filename = f"report_{run_ts.replace(':', '-').replace(' ', '_')}.html"
@@ -98,6 +100,9 @@ def generate_html_report(
         buy_threshold=config.BUY_THRESHOLD,
         sell_threshold=config.SELL_THRESHOLD,
         data_estimated=data_estimated,
+        accuracy_stats=accuracy_stats or {},
+        weight_adjustments=weight_adjustments or {},
+        category_weights=config.CATEGORY_WEIGHTS,
     )
 
     with open(filepath, "w") as fh:
