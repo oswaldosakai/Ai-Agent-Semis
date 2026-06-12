@@ -53,6 +53,19 @@ def print_cli_report(recommendations: list[dict], factors: list[dict], run_ts: s
         )
     console.print(table)
 
+    # ── Last 48 Hours ────────────────────────────────────────────────────────
+    recent = _get_recent_48h_factors(factors)
+    if recent:
+        console.rule("[bold yellow]Last 48 Hours — Most Impactful[/bold yellow]")
+        for f in recent:
+            sentiment_icon = {"positive": "↑", "negative": "↓", "neutral": "→"}.get(f.get("sentiment"), "")
+            color = {"positive": "green", "negative": "red", "neutral": "white"}.get(f.get("sentiment"), "white")
+            date_str = f.get("event_date") or f"~{f.get('recency_days', 0):.0f}d ago"
+            console.print(
+                f"  [{color}]{sentiment_icon} [{f.get('category','?')}][/{color}] "
+                f"[dim]{date_str}[/dim] — {f.get('description','')[:110]}"
+            )
+
     # ── Top factors with deep-dive narratives ────────────────────────────────
     console.rule("[bold]Key Factors This Cycle[/bold]")
     top = sorted(factors, key=lambda x: abs(x.get("raw_score", 0)), reverse=True)[:8]
@@ -80,6 +93,12 @@ def _load_template():
     return env.get_template("report.html")
 
 
+def _get_recent_48h_factors(factors: list[dict]) -> list[dict]:
+    """Return up to 5 most impactful factors from the last 48 hours."""
+    recent = [f for f in factors if (f.get("recency_days") or 99) <= 2]
+    return sorted(recent, key=lambda x: abs(x.get("raw_score", 0)), reverse=True)[:5]
+
+
 def generate_html_report(
     recommendations: list[dict],
     factors: list[dict],
@@ -95,12 +114,15 @@ def generate_html_report(
     filename = f"report_{run_ts.replace(':', '-').replace(' ', '_')}.html"
     filepath = os.path.join(config.REPORT_OUTPUT_DIR, filename)
 
+    sorted_factors = sorted(factors, key=lambda x: abs(x.get("raw_score", 0)), reverse=True)
+    recent_48h = _get_recent_48h_factors(factors)
+
     template = _load_template()
     html = template.render(
         run_ts=run_ts,
         model=config.CLAUDE_MODEL,
         recommendations=recommendations,
-        factors=sorted(factors, key=lambda x: abs(x.get("raw_score", 0)), reverse=True),
+        factors=sorted_factors,
         forward_factors=forward_factors,
         historical_recs=historical_recs,
         buy_threshold=config.BUY_THRESHOLD,
@@ -110,6 +132,7 @@ def generate_html_report(
         weight_adjustments=weight_adjustments or {},
         category_weights=config.CATEGORY_WEIGHTS,
         self_review=self_review or {},
+        recent_48h=recent_48h,
     )
 
     with open(filepath, "w") as fh:

@@ -68,6 +68,45 @@
 </div>
 {% endif %}
 
+<!-- ── Last 48 Hours ─────────────────────────────────────────────────── -->
+{% if recent_48h %}
+<h2 style="color:var(--yellow)">⚡ Last 48 Hours — Most Impactful Factors</h2>
+<div class="section-card" style="border-color:rgba(234,179,8,0.35)">
+  {% for f in recent_48h %}
+  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;{% if not loop.last %}border-bottom:1px solid var(--border);{% endif %}">
+    <div style="flex-shrink:0;font-size:1.3rem;line-height:1;padding-top:2px">
+      {{ '↑' if f.sentiment == 'positive' else ('↓' if f.sentiment == 'negative' else '→') }}
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <span class="badge badge-{{ f.category if f.category in ['earnings','tariffs','geopolitics','ai_demand','supply_chain','rates'] else 'default' }}">
+          {{ f.category }}
+        </span>
+        <span style="color:var(--cyan);font-size:0.78rem;white-space:nowrap">
+          {{ f.event_date if f.event_date else ('~' + '%.0f' | format(f.recency_days or 0) + 'h ago') }}
+        </span>
+        <span class="{{ 'buy' if f.sentiment == 'positive' else ('sell' if f.sentiment == 'negative' else 'hold') }}" style="font-size:0.78rem;font-weight:600">
+          {{ f.sentiment }}
+        </span>
+      </div>
+      <div class="factor-desc" style="font-weight:500">{{ f.description[:140] }}</div>
+      {% if f.affected_tickers %}
+      <div style="margin-top:4px;font-size:0.78rem;color:var(--muted)">
+        Affects: {{ f.affected_tickers | join(', ') }}
+      </div>
+      {% endif %}
+    </div>
+    <div style="flex-shrink:0;text-align:right">
+      <span style="font-size:1rem;font-weight:700;color:{{ 'var(--green)' if f.raw_score > 0 else 'var(--red)' }}">
+        {{ '%+.2f' | format(f.raw_score or 0) }}
+      </span>
+      <div style="font-size:0.68rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% endif %}
+
 <!-- ── Signal Summary ────────────────────────────────────────────────── -->
 <h2>Signal Summary</h2>
 <div class="section-card">
