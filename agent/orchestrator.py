@@ -18,7 +18,7 @@ import agent.self_review as self_review
 console = Console()
 
 
-def run_cycle(report_html: bool = True) -> list[dict]:
+def run_cycle(report_html: bool = True) -> tuple[list[dict], str | None]:
     run_id = str(uuid.uuid4())[:8]
     run_ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
     errors: list[str] = []
@@ -118,9 +118,10 @@ def run_cycle(report_html: bool = True) -> list[dict]:
     reporter.print_cli_report(recs, current_factors, run_ts,
                               data_note="[Estimated via Claude knowledge — live data unavailable]" if news_fallback else None)
 
+    report_path = None
     if report_html:
         historical_recs = state_store.get_recent_recommendations(n_runs=10)
-        reporter.generate_html_report(
+        report_path = reporter.generate_html_report(
             recs, current_factors, forward_factors, run_ts,
             historical_recs, data_estimated=news_fallback,
             accuracy_stats=accuracy_stats, weight_adjustments=weight_adjustments,
@@ -128,4 +129,4 @@ def run_cycle(report_html: bool = True) -> list[dict]:
         )
 
     console.print(f"[bold green]✔ Cycle {run_id} complete.[/bold green]\n")
-    return recs
+    return recs, report_path

@@ -21,8 +21,20 @@ import agent.orchestrator as orchestrator
 console = Console()
 
 
+def _open_report(report_path):
+    """Open the HTML report in the default browser (skipped in CI/headless runs)."""
+    if not report_path:
+        return
+    if os.environ.get("CI") or os.environ.get("GITHUB_ACTIONS"):
+        return  # no browser on GitHub Actions runners
+    import webbrowser
+    webbrowser.open(f"file://{os.path.abspath(report_path)}")
+    console.print("[cyan]Report opened in your browser.[/cyan]")
+
+
 def cmd_run_now(args):
-    orchestrator.run_cycle(report_html=not args.no_html)
+    _, report_path = orchestrator.run_cycle(report_html=not args.no_html)
+    _open_report(report_path)
 
 
 def cmd_schedule(args):
