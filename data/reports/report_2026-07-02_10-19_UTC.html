@@ -1,0 +1,2509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Semis Factor Analysis — 2026-07-02 10:19 UTC</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2a2d3e;
+    --text: #e2e8f0;
+    --muted: #8892a4;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #eab308;
+    --cyan: #22d3ee;
+    --purple: #a78bfa;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; padding: 24px; }
+  h1 { font-size: 1.6rem; color: var(--cyan); margin-bottom: 4px; }
+  .meta { color: var(--muted); margin-bottom: 24px; font-size: 0.85rem; }
+  h2 { font-size: 1.1rem; color: var(--purple); margin: 28px 0 12px; }
+  table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+  th { background: var(--surface); color: var(--muted); text-align: left; padding: 8px 12px; font-weight: 600; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(255,255,255,0.03); }
+  .buy { color: var(--green); font-weight: 700; }
+  .sell { color: var(--red); font-weight: 700; }
+  .hold { color: var(--yellow); font-weight: 600; }
+  .score-bar-wrap { background: var(--border); border-radius: 4px; height: 8px; width: 120px; overflow: hidden; display: inline-block; vertical-align: middle; margin-left: 8px; }
+  .score-bar { height: 100%; border-radius: 4px; }
+  .pos { background: var(--green); }
+  .neg { background: var(--red); }
+  .neutral-bar { background: var(--yellow); }
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; margin-right: 4px; }
+  .badge-earnings { background: #1e3a5f; color: #60a5fa; }
+  .badge-tariffs { background: #3b1f1f; color: #f87171; }
+  .badge-geopolitics { background: #3b2d1f; color: #fb923c; }
+  .badge-ai_demand { background: #1e3b2e; color: #4ade80; }
+  .badge-supply_chain { background: #2d2b1e; color: #fbbf24; }
+  .badge-rates { background: #2d1e3b; color: #c084fc; }
+  .badge-default { background: var(--surface); color: var(--muted); }
+  .factor-desc { color: var(--text); }
+  .factor-meta { color: var(--muted); font-size: 0.8rem; margin-top: 2px; }
+  .forward-dir { font-size: 0.8rem; font-weight: 600; }
+  .intensify_positive { color: var(--green); }
+  .intensify_negative { color: var(--red); }
+  .diminish { color: var(--muted); }
+  .persist { color: var(--yellow); }
+  .reverse { color: var(--cyan); }
+  .history-chip { display: inline-block; width: 38px; height: 36px; line-height: 1.2; padding-top: 4px; text-align: center; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin: 2px; vertical-align: top; }
+  .chip-BUY { background: rgba(34,197,94,0.2); color: var(--green); border: 1px solid var(--green); }
+  .chip-SELL { background: rgba(239,68,68,0.2); color: var(--red); border: 1px solid var(--red); }
+  .chip-HOLD { background: rgba(234,179,8,0.2); color: var(--yellow); border: 1px solid var(--yellow); }
+  .disclaimer { color: var(--muted); font-size: 0.78rem; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+  .section-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h1>Semiconductor Factor Analysis</h1>
+<div class="meta">Run: 2026-07-02 10:19 UTC &nbsp;|&nbsp; Model: claude-sonnet-4-6 &nbsp;|&nbsp; Thresholds: BUY ≥ 0.52 / SELL ≤ -0.48</div>
+
+
+<!-- ── Last 48 Hours ─────────────────────────────────────────────────── -->
+
+<h2 style="color:var(--yellow)">⚡ Last 48 Hours — Most Impactful Factors</h2>
+<div class="section-card" style="border-color:rgba(234,179,8,0.35)">
+  
+  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+    <div style="flex-shrink:0;font-size:1.3rem;line-height:1;padding-top:2px">
+      ↑
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+        <span style="color:var(--cyan);font-size:0.78rem;white-space:nowrap">
+          2026-06-30
+        </span>
+        <span class="buy" style="font-size:0.78rem;font-weight:600">
+          positive
+        </span>
+      </div>
+      <div class="factor-desc" style="font-weight:500">[2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU market projected at $32.3 billion in opportu</div>
+      
+      <div style="margin-top:4px;font-size:0.78rem;color:var(--muted)">
+        Affects: NVDA, AMD, AVGO, TSM, SOXX, SMH, SOXL
+      </div>
+      
+    </div>
+    <div style="flex-shrink:0;text-align:right">
+      <span style="font-size:1rem;font-weight:700;color:var(--green)">
+        +4.58
+      </span>
+      <div style="font-size:0.68rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  
+  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+    <div style="flex-shrink:0;font-size:1.3rem;line-height:1;padding-top:2px">
+      ↓
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <span class="badge badge-supply_chain">
+          supply_chain
+        </span>
+        <span style="color:var(--cyan);font-size:0.78rem;white-space:nowrap">
+          2026-07-01
+        </span>
+        <span class="sell" style="font-size:0.78rem;font-weight:600">
+          negative
+        </span>
+      </div>
+      <div class="factor-desc" style="font-weight:500">[2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting production limits that are choking the sup</div>
+      
+      <div style="margin-top:4px;font-size:0.78rem;color:var(--muted)">
+        Affects: AVGO, TSM, NVDA, AMD, AMAT, LRCX, ASML, SOXX, SMH
+      </div>
+      
+    </div>
+    <div style="flex-shrink:0;text-align:right">
+      <span style="font-size:1rem;font-weight:700;color:var(--red)">
+        -2.99
+      </span>
+      <div style="font-size:0.68rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  
+  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">
+    <div style="flex-shrink:0;font-size:1.3rem;line-height:1;padding-top:2px">
+      ↑
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+        <span style="color:var(--cyan);font-size:0.78rem;white-space:nowrap">
+          2026-06-30
+        </span>
+        <span class="buy" style="font-size:0.78rem;font-weight:600">
+          positive
+        </span>
+      </div>
+      <div class="factor-desc" style="font-weight:500">[2026-06-30] Morgan Stanley analyst Michael Wilson characterized semiconductors as &#39;the latest commodity to boom this year,&#39; reinforcing the</div>
+      
+      <div style="margin-top:4px;font-size:0.78rem;color:var(--muted)">
+        Affects: NVDA, AMD, AVGO, TSM, MU, SOXX, SMH, SOXL
+      </div>
+      
+    </div>
+    <div style="flex-shrink:0;text-align:right">
+      <span style="font-size:1rem;font-weight:700;color:var(--green)">
+        +2.29
+      </span>
+      <div style="font-size:0.68rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  
+  <div style="display:flex;align-items:flex-start;gap:12px;padding:10px 0;">
+    <div style="flex-shrink:0;font-size:1.3rem;line-height:1;padding-top:2px">
+      ↑
+    </div>
+    <div style="flex:1;min-width:0">
+      <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:4px">
+        <span class="badge badge-default">
+          analyst_actions
+        </span>
+        <span style="color:var(--cyan);font-size:0.78rem;white-space:nowrap">
+          2026-07-01
+        </span>
+        <span class="buy" style="font-size:0.78rem;font-weight:600">
+          positive
+        </span>
+      </div>
+      <div class="factor-desc" style="font-weight:500">[2026-07-01] Intel received a positive analyst mention ahead of its upcoming earnings call, while INTC, NVDA, and AMD are seen as having nea</div>
+      
+      <div style="margin-top:4px;font-size:0.78rem;color:var(--muted)">
+        Affects: INTC, NVDA, AMD
+      </div>
+      
+    </div>
+    <div style="flex-shrink:0;text-align:right">
+      <span style="font-size:1rem;font-weight:700;color:var(--green)">
+        +2.17
+      </span>
+      <div style="font-size:0.68rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  
+</div>
+
+
+<!-- ── Signal Summary ────────────────────────────────────────────────── -->
+<h2>Signal Summary</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Signal</th>
+      <th>Composite Score</th>
+      <th>14-Day Price % <span style="font-weight:400;color:var(--muted)">(past)</span></th>
+      <th>Top Factors</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td><strong>SOXL</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.846
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:92%"></span>
+        </span>
+      </td>
+      <td>
+        -20.2%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SMH</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.799
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:90%"></span>
+        </span>
+      </td>
+      <td>
+        -4.1%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXX</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.795
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:90%"></span>
+        </span>
+      </td>
+      <td>
+        -4.6%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AMD</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.722
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:86%"></span>
+        </span>
+      </td>
+      <td>
+        -1.2%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>NVDA</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.664
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:83%"></span>
+        </span>
+      </td>
+      <td>
+        -7.0%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>INTC</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.526
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:76%"></span>
+        </span>
+      </td>
+      <td>
+        -0.7%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-24] Micron reported a massive Q3 FY2026 earnings beat with EPS of $25.11 vs. estimate $20.4
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-24]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>MU</strong></td>
+      <td class="buy">BUY</td>
+      <td>
+        +0.359
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:68%"></span>
+        </span>
+      </td>
+      <td>
+        -5.1%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-24] Micron reported a massive Q3 FY2026 earnings beat with EPS of $25.11 vs. estimate $20.4
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-24]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-28] SK Hynix placed a record $7.9 billion EUV lithography equipment order from ASML — the l
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-28]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>TSM</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.329
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:66%"></span>
+        </span>
+      </td>
+      <td>
+        +0.6%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting pr
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-01]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AVGO</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.166
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar pos" style="width:58%"></span>
+        </span>
+      </td>
+      <td>
+        -6.1%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU mark
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-30]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting pr
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-01]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>AMAT</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        +0.000
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:50%"></span>
+        </span>
+      </td>
+      <td>
+        +11.1%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting pr
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-01]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-25] US-China chip export controls on advanced semiconductors and AI chips continue to tight
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-25]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>ASML</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.023
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:49%"></span>
+        </span>
+      </td>
+      <td>
+        -2.6%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting pr
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-01]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-28] SK Hynix placed a record $7.9 billion EUV lithography equipment order from ASML — the l
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-28]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>LRCX</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.093
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:45%"></span>
+        </span>
+      </td>
+      <td>
+        +0.7%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting pr
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-01]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-25] US-China chip export controls on advanced semiconductors and AI chips continue to tight
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-25]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>QCOM</strong></td>
+      <td class="hold">HOLD</td>
+      <td>
+        -0.126
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:44%"></span>
+        </span>
+      </td>
+      <td>
+        -17.6%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-25] US-China chip export controls on advanced semiconductors and AI chips continue to tight
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-25]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-29] China debuted its largest AI model (LongCat-2.0 with 1.6 trillion parameters) trained o
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-29]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+    <tr>
+      <td><strong>SOXS</strong></td>
+      <td class="sell">SELL</td>
+      <td>
+        -0.442
+        <span class="score-bar-wrap">
+          
+          
+          <span class="score-bar neg" style="width:28%"></span>
+        </span>
+      </td>
+      <td>
+        -1.1%
+        
+      </td>
+      <td>
+        
+          <div style="margin-bottom:4px">
+            [2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to sign
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-07-02]</span>
+          </div>
+        
+          <div style="margin-bottom:4px">
+            [2026-06-24] Micron reported a massive Q3 FY2026 earnings beat with EPS of $25.11 vs. estimate $20.4
+            
+            <span style="color:var(--cyan);font-size:0.75rem;margin-left:4px">[2026-06-24]</span>
+          </div>
+        
+      </td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Factor Deep Dives ─────────────────────────────────────────────── -->
+
+
+<h2>Factor Deep Dives — Top 3 Most Impactful</h2>
+
+<div class="section-card" style="margin-bottom:14px">
+  <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px">
+    <span class="badge badge-earnings" style="flex-shrink:0;margin-top:2px">
+      earnings
+    </span>
+    <div>
+      <div style="font-weight:600;color:var(--text)">[2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to significantly influence AMD and INTC trading momentum and valuations.</div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:3px">
+        <span class="buy">positive</span>
+        &nbsp;|&nbsp; magnitude 4/5
+        &nbsp;|&nbsp; <span style="color:var(--cyan)">2026-07-02</span>
+        &nbsp;|&nbsp; NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS
+      </div>
+    </div>
+    <div style="margin-left:auto;text-align:right;flex-shrink:0">
+      <span style="font-size:1.1rem;font-weight:700;color:var(--green)">
+        +5.60
+      </span>
+      <div style="font-size:0.7rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  <div style="color:var(--text);line-height:1.7;font-size:0.9rem;border-top:1px solid var(--border);padding-top:10px">
+    NVIDIA&#39;s fiscal Q1 2027 earnings report, due after the close on July 2, represents the single most consequential near-term catalyst for the entire semiconductor complex. Consensus per Visible Alpha pegs total revenue at approximately $78.5 billion, with the Data Center segment — now subdivided into Hyperscale and ACIE sub-markets under a new reporting framework — expected to contribute roughly $72.8 billion, a figure that has itself risen 35% since June 2025 estimates. The range of Data Center estimates spans $65.4 billion to $78.0 billion, meaning a beat at the high end would validate the AI infrastructure supercycle thesis, while a miss toward the low end could trigger a sharp de-rating across the group. Separately, NVIDIA&#39;s anticipated 25% price increase on Vera Rubin systems, flagged by Futurum Group, introduces meaningful upside to gross margin guidance that the market has not fully priced. With fiscal 2027 EPS consensus at $8.96 — implying 88% growth — the bar is high but the multiple, at roughly 21.6x forward earnings, is surprisingly undemanding relative to AMD&#39;s 71x.
+
+The most asymmetric exposures sit with AMD and INTC. AMD, trading at a valuation that requires earnings to more than triple post-2026 just to match NVIDIA&#39;s current multiple, faces the greatest downside if NVIDIA&#39;s guidance signals continued dominance in data center AI accelerators and now encroaches on PC territory following the Computex June 1 announcement. INTC, up 222% year-to-date on foundry optionality and the agentic CPU narrative under Lip-Bu Tan, is less directly correlated to GPU demand but remains vulnerable to any sector-wide risk-off rotation. SOXX and SMH will track NVIDIA&#39;s reaction closely given its outsized index weight. Over the next two weeks, investors should watch NVIDIA&#39;s Hyperscale revenue print against the $72.8 billion estimate, forward Q2 guidance relative to the $85–90 billion range implied by full-year targets, and any commentary on Blackwell Ultra and Vera Rubin supply constraints — a clean beat with raised guidance would confirm the bull case and likely lift AMD despite its valuation
+  </div>
+</div>
+
+<div class="section-card" style="margin-bottom:14px">
+  <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px">
+    <span class="badge badge-ai_demand" style="flex-shrink:0;margin-top:2px">
+      ai_demand
+    </span>
+    <div>
+      <div style="font-weight:600;color:var(--text)">[2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU market projected at $32.3 billion in opportunities through 2030, driven by generative AI and sovereign AI infrastructure.</div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:3px">
+        <span class="buy">positive</span>
+        &nbsp;|&nbsp; magnitude 4/5
+        &nbsp;|&nbsp; <span style="color:var(--cyan)">2026-06-30</span>
+        &nbsp;|&nbsp; NVDA, AMD, AVGO, TSM, SOXX, SMH, SOXL
+      </div>
+    </div>
+    <div style="margin-left:auto;text-align:right;flex-shrink:0">
+      <span style="font-size:1.1rem;font-weight:700;color:var(--green)">
+        +4.58
+      </span>
+      <div style="font-size:0.7rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  <div style="color:var(--text);line-height:1.7;font-size:0.9rem;border-top:1px solid var(--border);padding-top:10px">
+    NVIDIA&#39;s retention of approximately 98% data center GPU market share as of mid-2026 — against a backdrop of a total addressable market that multiple research houses now peg at $77–$112 billion by the mid-2030s — confirms that the AI infrastructure buildout remains structurally intact rather than cyclically peaking. The more telling signal is the inference demand inflection: GPU spot pricing has moved materially higher in recent months, Anthropic&#39;s annualized revenue run rate has surpassed $30 billion (up from $9 billion at end-2025), and agentic AI workloads are driving compute intensity well beyond what training cycles alone would justify. TSMC&#39;s CoWoS advanced packaging capacity is on track to roughly double by late 2026, which removes a meaningful production ceiling that constrained NVIDIA&#39;s H100/H200 shipment cadence through much of 2024–2025. The structural risk worth monitoring is hyperscaler custom silicon — Google TPUs, AWS Trainium, Microsoft Maia, and Meta&#39;s MTIA collectively represent $50 billion-plus in committed investment — which could gradually erode NVIDIA&#39;s unit share even as absolute dollar demand expands.
+
+NVIDIA remains the highest-conviction long in the group given its 80%-plus revenue concentration in data centers and pricing power on Blackwell-architecture products. Broadcom (AVGO) is the clearest secondary beneficiary, with Mizuho&#39;s June 4 price target raise to $530 reflecting confidence in its custom ASIC and networking revenue streams. AMD&#39;s exposure is positive but more muted given its sub-2% GPU share. TSMC benefits as the sole advanced packaging and leading-edge foundry supplier to the entire ecosystem. In the next one to two weeks, investors should focus on NVIDIA&#39;s quarterly earnings guidance — any commentary on Blackwell shipment linearity, order backlog duration, or hyperscaler capex commitments will either validate the inference-driven demand thesis or surface the first credible signs of digestion.
+  </div>
+</div>
+
+<div class="section-card" style="margin-bottom:14px">
+  <div style="display:flex;align-items:flex-start;gap:12px;margin-bottom:10px">
+    <span class="badge badge-earnings" style="flex-shrink:0;margin-top:2px">
+      earnings
+    </span>
+    <div>
+      <div style="font-weight:600;color:var(--text)">[2026-06-24] Micron reported a massive Q3 FY2026 earnings beat with EPS of $25.11 vs. estimate $20.49 and revenue of $41.46B vs. estimate $35.69B, sending shares up 14.6% after-hours.</div>
+      <div style="font-size:0.78rem;color:var(--muted);margin-top:3px">
+        <span class="buy">positive</span>
+        &nbsp;|&nbsp; magnitude 5/5
+        &nbsp;|&nbsp; <span style="color:var(--cyan)">2026-06-24</span>
+        &nbsp;|&nbsp; MU, NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS
+      </div>
+    </div>
+    <div style="margin-left:auto;text-align:right;flex-shrink:0">
+      <span style="font-size:1.1rem;font-weight:700;color:var(--green)">
+        +3.15
+      </span>
+      <div style="font-size:0.7rem;color:var(--muted)">score</div>
+    </div>
+  </div>
+  <div style="color:var(--text);line-height:1.7;font-size:0.9rem;border-top:1px solid var(--border);padding-top:10px">
+    Micron&#39;s fiscal Q3 FY2026 results were not merely a beat — they represented a structural inflection point for the memory industry. Revenue of $41.46 billion came in 16% above the $35.69 billion consensus, while adjusted EPS of $25.11 exceeded estimates by roughly 23%, with adjusted gross margins expanding to an extraordinary 84.9%. Sequential revenue nearly doubled from $23.86 billion in Q2, and the company guided Q4 to approximately $50 billion — a figure that was itself 15% above the $43.58 billion analyst forecast. The driver is unambiguous: HBM demand tied to AI infrastructure buildout, with Micron securing $22 billion in long-term customer supply agreements during the quarter. CEO Sanjay Mehrotra&#39;s commentary that supply shortages will persist &#34;even as industry supply improves gradually in 2028&#34; signals that pricing power is durable, not cyclical. The stock&#39;s 700% trailing twelve-month appreciation and crossing of the $1 trillion market cap threshold reflect a market that is now pricing Micron as critical infrastructure rather than a commodity cyclical.
+
+The read-through for adjacent names is strongly positive but differentiated. NVIDIA is the most direct beneficiary, as HBM is a core component of its H100 and B200 GPU architectures, and Micron&#39;s supply constraint commentary validates continued AI capex intensity. AMD benefits more modestly given its smaller HBM consumption footprint relative to NVIDIA. Intel remains structurally disadvantaged, lacking meaningful HBM exposure and still navigating its foundry transition. For SOXX and SMH, the Micron print provides a fundamental anchor that should compress risk premiums across the index. In the next one to two weeks, investors should watch for NVIDIA&#39;s supply chain commentary at any investor events, any HBM pricing data from spot markets, and whether AMD&#39;s upcoming analyst day revises AI accelerator shipment targets upward — confirmation that would validate Micron&#39;s demand signal rather than treating it as company-specific outperformance.
+  </div>
+</div>
+
+
+
+<!-- ── Key Factors ───────────────────────────────────────────────────── -->
+<h2>Key Factors (Current Cycle)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Sentiment</th>
+      <th>Mag</th>
+      <th>Event Date</th>
+      <th>Score</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02] NVIDIA is preparing to report fiscal Q1 2027 results, with the outcome expected to significantly influence </div>
+        
+        <div class="factor-meta">"The global semiconductor landscape is bracing for impact as Nvidia (NVDA) prepares to report its fis"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>4</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-07-02
+      </td>
+      <td>+5.60</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-30] NVIDIA maintains ~98% share of the data center GPU market, with AI data center GPU market projected at $32.</div>
+        
+        <div class="factor-meta">"Analysts Estimate Nvidia Owns 98% of the Data Center GPU Market."</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>4</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-30
+      </td>
+      <td>+4.58</td>
+      <td style="font-size:0.8rem">NVDA, AMD, AVGO, TSM, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-24] Micron reported a massive Q3 FY2026 earnings beat with EPS of $25.11 vs. estimate $20.49 and revenue of $41</div>
+        
+        <div class="factor-meta">"Micron reported Q3 FY2026 EPS of $25.11 vs. est. $20.49 on revenue of $41.46B vs. est. $35.69B; shar"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>5</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-24
+      </td>
+      <td>+3.15</td>
+      <td style="font-size:0.8rem">MU, NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-supply_chain">
+          supply_chain
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-01] Broadcom flagged TSMC production capacity as a bottleneck in 2026, with TSMC hitting production limits that</div>
+        
+        <div class="factor-meta">"We are seeing that TSMC is hitting (production capacity) limits."</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>3</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-07-01
+      </td>
+      <td>-2.99</td>
+      <td style="font-size:0.8rem">AVGO, TSM, NVDA, AMD, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-28] SK Hynix placed a record $7.9 billion EUV lithography equipment order from ASML — the largest single EUV or</div>
+        
+        <div class="factor-meta">"SK hynix disclosed in a regulatory filing on Tuesday that it will purchase 11.9 trillion won ($7.9 b"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>4</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-28
+      </td>
+      <td>+2.68</td>
+      <td style="font-size:0.8rem">ASML, MU, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-30] Morgan Stanley analyst Michael Wilson characterized semiconductors as &#39;the latest commodity to boom this ye</div>
+        
+        <div class="factor-meta">"Morgan Stanley&#39;s Michael Wilson: semis are the latest commodity to boom this year."</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>2</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-30
+      </td>
+      <td>+2.29</td>
+      <td style="font-size:0.8rem">NVDA, AMD, AVGO, TSM, MU, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          analyst_actions
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-01] Intel received a positive analyst mention ahead of its upcoming earnings call, while INTC, NVDA, and AMD ar</div>
+        
+        <div class="factor-meta">"NVIDIA is seen as the strongest name, with support at $195 and upside toward $210, while AMD is targ"</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>2</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-07-01
+      </td>
+      <td>+2.17</td>
+      <td style="font-size:0.8rem">INTC, NVDA, AMD</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          china_risk
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-25] US-China chip export controls on advanced semiconductors and AI chips continue to tighten in 2026, restrict</div>
+        
+        <div class="factor-meta">"US-China Chip Export Controls in 2026: The Rules Changed, and Nobody Won."</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>3</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-25
+      </td>
+      <td>-1.64</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          china_risk
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-29] China debuted its largest AI model (LongCat-2.0 with 1.6 trillion parameters) trained on local chips, signa</div>
+        
+        <div class="factor-meta">"China debuts biggest AI model trained on local chips — LongCat-2.0 boasts 1.6 trillion parameters an"</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>2</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-29
+      </td>
+      <td>-1.63</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-geopolitics">
+          geopolitics
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-25] Taiwan&#39;s semiconductor dominance continues to represent a major geopolitical vulnerability, with TSMC manuf</div>
+        
+        <div class="factor-meta">"Taiwan is one of the world&#39;s top producers of semiconductors, manufacturing about 90% of the global "</div>
+        
+      </td>
+      <td class="sell">
+        negative
+      </td>
+      <td>3</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-25
+      </td>
+      <td>-1.49</td>
+      <td style="font-size:0.8rem">TSM, NVDA, AMD, INTC, AVGO, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-20] TSMC is accelerating Arizona fab expansion with $65 billion committed for three advanced wafer fabs, plus a</div>
+        
+        <div class="factor-meta">"TSMC is accelerating its expansion in Arizona, driven by strong demand for advanced chips in AI and "</div>
+        
+      </td>
+      <td class="buy">
+        positive
+      </td>
+      <td>3</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-20
+      </td>
+      <td>+0.90</td>
+      <td style="font-size:0.8rem">TSM, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          macro
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-29] The Federal Reserve held rates steady in Q1 2026 after three cuts in H2 2025; inflation remains elevated ab</div>
+        
+        <div class="factor-meta">"After three interest rate cuts in the last half of 2025, the Fed appears poised to hold rates steady"</div>
+        
+      </td>
+      <td class="hold">
+        neutral
+      </td>
+      <td>2</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        2026-06-29
+      </td>
+      <td>+0.00</td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, TSM, ASML, MU, AMAT, LRCX, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Forward Factors ──────────────────────────────────────────────── -->
+<h2>Forward-Looking Factors (1–2 Week Outlook)</h2>
+<div class="section-card">
+<table>
+  <thead>
+    <tr>
+      <th>Category</th>
+      <th>Factor</th>
+      <th>Direction</th>
+      <th>Confidence</th>
+      <th>Expected By</th>
+      <th>Tickers</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-09] NVIDIA fiscal Q1 2027 earnings report imminent, with results expected to catalyze significant</div>
+        
+        <div class="factor-meta">NVIDIA earnings are the single most anticipated catalyst in the near-term window. Given Micron&#39;s mas</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>78%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +7d
+      </td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-earnings">
+          earnings
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-06-24 to 2026-07-07] Micron Q3 FY2026 earnings beat momentum persisting, with the 14.6% after-hours surge continui</div>
+        
+        <div class="factor-meta">Micron&#39;s beat was reported on 2026-06-24, meaning by 2026-07-02 the market has had approximately 8 d</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir diminish">
+          diminish
+        </span>
+      </td>
+      <td>72%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +7d
+      </td>
+      <td style="font-size:0.8rem">MU, NVDA, AMD, INTC, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-ai_demand">
+          ai_demand
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-16] AI data center GPU demand narrative intensifies as NVIDIA earnings approach and hyperscaler c</div>
+        
+        <div class="factor-meta">AI demand has shown 3 consecutive positive cycles with no negative readings historically. The NVDA e</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>82%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +14d
+      </td>
+      <td style="font-size:0.8rem">NVDA, AMD, AVGO, TSM, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-supply_chain">
+          supply_chain
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-16] TSMC production capacity bottleneck flagged by Broadcom on 2026-07-01 expected to persist and</div>
+        
+        <div class="factor-meta">Broadcom&#39;s 2026-07-01 disclosure of TSMC hitting production limits is a fresh, high-credibility sign</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_negative">
+          intensify negative
+        </span>
+      </td>
+      <td>68%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +14d
+      </td>
+      <td style="font-size:0.8rem">AVGO, TSM, NVDA, AMD, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          capex
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-16] SK Hynix&#39;s $7.9B EUV order from ASML (placed 2026-06-28) and TSMC&#39;s $165B Arizona fab commitm</div>
+        
+        <div class="factor-meta">Capex sentiment has been uniformly positive across all 5 historical cycles. The SK Hynix EUV order (</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>80%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +14d
+      </td>
+      <td style="font-size:0.8rem">ASML, MU, TSM, AMAT, LRCX, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          china_risk
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-16] US-China export control tightening and China&#39;s LongCat-2.0 AI model debut (2026-06-29) contin</div>
+        
+        <div class="factor-meta">China risk has been consistently negative across all 4 historical cycles with no positive readings. </div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>75%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +14d
+      </td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-geopolitics">
+          geopolitics
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-16] Taiwan geopolitical risk remains a persistent background negative, with TSMC&#39;s ~90% advanced </div>
+        
+        <div class="factor-meta">Geopolitical risk around Taiwan has been consistently negative across both historical cycles. This i</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>70%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +14d
+      </td>
+      <td style="font-size:0.8rem">TSM, NVDA, AMD, INTC, AVGO, AMAT, LRCX, ASML, SOXX, SMH</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          analyst_actions
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-10] Post-NVDA earnings analyst upgrades and price target revisions expected to cascade across INT</div>
+        
+        <div class="factor-meta">Analyst actions have been predominantly positive (1 positive, 1 neutral in prior cycles). The 2026-0</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir intensify_positive">
+          intensify positive
+        </span>
+      </td>
+      <td>72%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +10d
+      </td>
+      <td style="font-size:0.8rem">INTC, NVDA, AMD, SOXX, SMH, SOXL</td>
+    </tr>
+    
+    <tr>
+      <td>
+        <span class="badge badge-default">
+          macro
+        </span>
+      </td>
+      <td>
+        <div class="factor-desc">[2026-07-02 to 2026-07-16] Fed rate hold stance and elevated inflation create a mixed but stable macro backdrop; no sche</div>
+        
+        <div class="factor-meta">The Fed held rates steady in Q1 2026 with no scheduled FOMC meeting in the immediate 1-2 week window</div>
+        
+      </td>
+      <td>
+        <span class="forward-dir persist">
+          persist
+        </span>
+      </td>
+      <td>65%</td>
+      <td style="color:var(--cyan);font-size:0.8rem;white-space:nowrap">
+        +14d
+      </td>
+      <td style="font-size:0.8rem">NVDA, AMD, INTC, QCOM, AVGO, TSM, ASML, MU, AMAT, LRCX, SOXX, SMH, SOXL, SOXS</td>
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<!-- ── Backtest Accuracy ─────────────────────────────────────────────── -->
+
+<h2>Backtest Accuracy — Past Signal vs Actual Move</h2>
+<div class="section-card">
+  <div style="margin-bottom:12px;font-size:0.85rem;color:var(--muted)">
+    Compares each past signal against the subsequent inter-run price move.
+    BUY = correct if price rose >1%, SELL = correct if price fell >1%, HOLD = correct if move within ±2%.
+  </div>
+  <table style="width:auto;margin-bottom:16px">
+    <thead>
+      <tr>
+        <th>Signal</th><th>Correct</th><th>Incorrect</th><th>Neutral</th><th>Accuracy</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr>
+        <td class="buy"><strong>BUY</strong></td>
+        <td style="color:var(--green)">53</td>
+        <td style="color:var(--red)">28</td>
+        <td style="color:var(--yellow)">100</td>
+        <td>
+          
+          <span style="color:var(--red)">
+            29%
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="sell"><strong>SELL</strong></td>
+        <td style="color:var(--green)">5</td>
+        <td style="color:var(--red)">8</td>
+        <td style="color:var(--yellow)">24</td>
+        <td>
+          
+          <span style="color:var(--red)">
+            14%
+          </span>
+        </td>
+      </tr>
+      
+      <tr>
+        <td class="hold"><strong>HOLD</strong></td>
+        <td style="color:var(--green)">194</td>
+        <td style="color:var(--red)">61</td>
+        <td style="color:var(--yellow)">27</td>
+        <td>
+          
+          <span style="color:var(--green)">
+            69%
+          </span>
+        </td>
+      </tr>
+      
+      <tr style="border-top:2px solid var(--border)">
+        <td><strong>OVERALL</strong></td>
+        <td colspan="3" style="color:var(--muted)">500 outcomes</td>
+        <td>
+          <span style="font-weight:700;color:var(--yellow)">
+            50.4%
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  
+  <div style="margin-top:8px;padding:10px 14px;background:rgba(34,211,238,0.07);border:1px solid var(--cyan);border-radius:6px;font-size:0.85rem">
+    <strong style="color:var(--cyan)">⚙ Weight adjustments applied this cycle:</strong>
+    <div style="margin-top:6px">
+      
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">ai_demand:</span>
+          <span style="color:var(--text)">1.5</span>
+          <span style="color:var(--cyan)">(was adjusted to 1.4)</span>
+        </span>
+      
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">geopolitics:</span>
+          <span style="color:var(--text)">0.9</span>
+          <span style="color:var(--cyan)">(was adjusted to 1.0)</span>
+        </span>
+      
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">tariffs:</span>
+          <span style="color:var(--text)">1.2</span>
+          <span style="color:var(--cyan)">(was adjusted to 1.0)</span>
+        </span>
+      
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">macro:</span>
+          <span style="color:var(--text)">0.9</span>
+          <span style="color:var(--cyan)">(was adjusted to 1.1)</span>
+        </span>
+      
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">rates:</span>
+          <span style="color:var(--text)">0.9</span>
+          <span style="color:var(--cyan)">(was adjusted to 1.1)</span>
+        </span>
+      
+        <span style="margin-right:12px">
+          <span style="color:var(--muted)">analyst_actions:</span>
+          <span style="color:var(--text)">1.1</span>
+          <span style="color:var(--cyan)">(was adjusted to 1.2)</span>
+        </span>
+      
+    </div>
+  </div>
+  
+</div>
+
+
+<!-- ── Signal History ────────────────────────────────────────────────── -->
+
+<h2>Historical Signal Trend</h2>
+<div class="section-card">
+
+<!-- Run timeline header -->
+
+<div style="margin-bottom:12px;font-size:0.78rem;color:var(--muted)">
+  <strong style="color:var(--text)">Runs (oldest → newest):</strong>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#10</span>
+      2026-07-02 10:19
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#9</span>
+      2026-07-01 18:32
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#8</span>
+      2026-07-01 11:41
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#7</span>
+      2026-06-30 18:23
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#6</span>
+      2026-06-30 11:28
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#5</span>
+      2026-06-29 22:18
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#4</span>
+      2026-06-29 14:41
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#3</span>
+      2026-06-28 21:45
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#2</span>
+      2026-06-28 16:40
+    </span>
+  
+    <span style="display:inline-block;margin:2px 6px 2px 0">
+      <span style="color:var(--cyan)">#1</span>
+      2026-06-28 10:13
+    </span>
+  
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Ticker</th>
+      <th>
+        Recent Signals (oldest → newest)
+        <span style="font-weight:400;color:var(--muted);font-size:0.78rem"> — hover chip for run timestamp</span>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    
+    
+    
+    <tr>
+      <td><strong>NVDA</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score -0.237">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.436">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.443">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 14:41 — score +0.361">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 22:18 — score +0.361">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.223">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score +0.142">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-01 11:41 — score +0.147">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.403">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.664">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AMD</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score -0.266">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.564">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.558">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 14:41 — score +0.391">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 22:18 — score +0.429">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.129">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score +0.265">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-01 11:41 — score +0.318">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.667">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.722">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>INTC</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score +0.294">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 16:40 — score +0.342">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 21:45 — score +0.264">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.220">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.310">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.032">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.470">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-01 11:41 — score +0.341">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.571">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.526">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>QCOM</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score -0.037">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 16:40 — score -0.143">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 21:45 — score -0.124">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.246">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.200">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score -0.138">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score +0.162">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-01 11:41 — score -0.294">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-01 18:32 — score -0.265">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-02 10:19 — score -0.126">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AVGO</strong></td>
+      <td>
+        
+        <span class="history-chip chip-SELL"
+              title="2026-06-28 10:13 — score -0.433">
+          S
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.397">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.391">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.239">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.105">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score -0.027">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score +0.082">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-01 11:41 — score +0.155">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.452">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-02 10:19 — score +0.166">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>TSM</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score -0.066">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.909">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.886">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.337">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 22:18 — score +0.392">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.145">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score +0.274">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +0.473">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.601">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-02 10:19 — score +0.329">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>ASML</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score +0.015">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 16:40 — score -0.055">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.388">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.304">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.224">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.231">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score +0.319">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.587">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-02 10:19 — score -0.023">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>MU</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score +0.204">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.981">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.823">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.196">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.182">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.224">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.474">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.736">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.359">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>AMAT</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score -0.107">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.816">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.492">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 14:41 — score +0.403">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 22:18 — score +0.370">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score -0.043">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.483">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.732">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-02 10:19 — score +0.000">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>LRCX</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score -0.107">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.816">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.492">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 14:41 — score +0.403">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 22:18 — score +0.370">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score -0.002">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.483">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.732">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-07-02 10:19 — score -0.093">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXX</strong></td>
+      <td>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 10:13 — score +0.354">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.845">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 14:41 — score +0.425">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.308">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.214">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.447">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.795">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SMH</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score +0.339">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.830">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-29 14:41 — score +0.406">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.289">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.161">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.437">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.992">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.799">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXS</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score +0.090">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-SELL"
+              title="2026-06-28 16:40 — score -0.682">
+          S
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 21:45 — score +0.138">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.012">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.052">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 11:28 — score +0.271">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-30 18:23 — score -0.128">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-SELL"
+              title="2026-07-01 11:41 — score -0.900">
+          S
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-SELL"
+              title="2026-07-01 18:32 — score -0.686">
+          S
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-SELL"
+              title="2026-07-02 10:19 — score -0.442">
+          S
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+    
+    
+    <tr>
+      <td><strong>SOXL</strong></td>
+      <td>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-28 10:13 — score +0.335">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 16:40 — score +0.851">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-28 21:45 — score +0.820">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-28</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 14:41 — score +0.283">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-HOLD"
+              title="2026-06-29 22:18 — score +0.270">
+          H
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-29</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 11:28 — score +0.456">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-06-30 18:23 — score +0.456">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">06-30</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 11:41 — score +1.000">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-01 18:32 — score +0.945">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-01</span>
+        </span>
+        
+        <span class="history-chip chip-BUY"
+              title="2026-07-02 10:19 — score +0.846">
+          B
+          <span style="display:block;font-size:0.6rem;line-height:1;color:inherit;opacity:0.8">07-02</span>
+        </span>
+        
+      </td>
+    </tr>
+    
+    
+  </tbody>
+</table>
+</div>
+
+
+<!-- ── Self-Review ───────────────────────────────────────────────────── -->
+
+<h2>Agent Self-Review (this run)</h2>
+<div class="section-card">
+  
+  <div style="margin-bottom:10px">
+    <span style="font-size:1.2rem;font-weight:700;color:var(--yellow)">
+      Quality score: 4/10
+    </span>
+  </div>
+  <div style="color:var(--text);line-height:1.6;font-size:0.9rem">Factor extraction is adequate at 12 factors with full date coverage, but only 3 of 12 carry narratives — a 25% narrative rate is far too low and undermines explainability and downstream signal quality. The signal distribution is suspiciously BUY-heavy (7 BUY vs 1 SELL out of 14 signals), suggesting the buy_threshold is too permissive and the sell_threshold is too conservative for the current semiconductor macro environment. BUY accuracy is only 53/181 evaluated = 29.3% on non-neutral cases, which is well below chance and strongly indicates the buy_threshold must be raised; SELL accuracy is 5/13 non-neutral = 38.5%, also below 50%, so the sell_threshold needs tightening too. Overall accuracy of 50.4% is barely above a coin flip and does not justify acting on these signals at current thresholds. The absence of runtime errors is a positive, and the use of real snippets rather than knowledge fallback is good, but the weak narrative coverage and poor directional accuracy dominate the quality assessment.</div>
+  
+  <div style="margin-top:10px;padding:8px 12px;background:rgba(34,211,238,0.07);border:1px solid var(--cyan);border-radius:6px;font-size:0.82rem">
+    <strong style="color:var(--cyan)">⚙ Tuning applied for next run:</strong>
+    <code style="color:var(--text)">{"buy_threshold": 0.52, "category_weights": {"ai_demand": 1.5, "analyst_actions": 1.1, "capex": 1.1, "china_risk": 1.3, "earnings": 1.5, "geopolitics": 0.9, "inventory": 1.2, "macro": 0.9, "rates": 0.9, "regulatory": 0.9, "supply_chain": 1.2, "tariffs": 1.2}, "sell_threshold": -0.48}</code>
+  </div>
+  
+  
+  <div style="margin-top:10px;font-size:0.82rem;color:var(--muted)">
+    <strong>Suggested code improvements:</strong>
+    <ul style="margin:6px 0 0 18px">
+      
+      <li style="margin-bottom:3px">Enforce a minimum narrative requirement: reject or flag any extracted factor that lacks a narrative string of at least 20 characters, and re-query the snippet source before finalising the factor list — target 100% narrative coverage.</li>
+      
+      <li style="margin-bottom:3px">Add a BUY precision guard: before emitting a BUY signal, require that the rolling 50-trade BUY precision (correct / (correct + incorrect)) exceeds 0.50; if it falls below, automatically raise buy_threshold by 0.05 and log the adjustment.</li>
+      
+      <li style="margin-bottom:3px">Implement a signal-distribution sanity check post-generation: if BUY signals exceed 60% of all non-HOLD signals, emit a WARNING log and suppress the lowest-scoring BUY signals until the ratio is below 60%.</li>
+      
+      <li style="margin-bottom:3px">Separate backtest accuracy reporting by &#39;non-neutral only&#39; in addition to total, so that the 29% BUY directional accuracy is surfaced explicitly rather than being diluted by the large neutral bucket (100 neutrals inflate the denominator and hide poor precision).</li>
+      
+      <li style="margin-bottom:3px">Weight category scores by recency: factors with event_date within 7 days should receive a 1.2x recency multiplier, while factors older than 30 days should be down-weighted by 0.8x, to reduce stale signal contamination.</li>
+      
+    </ul>
+  </div>
+  
+</div>
+
+
+<div class="disclaimer">
+  ⚠️ This report is generated by an AI agent for informational purposes only.
+  It does not constitute financial advice. Always do your own research before making investment decisions.
+  Data sources: web search, Google News RSS, yfinance. Powered by claude-sonnet-4-6.
+</div>
+
+</body>
+</html>
