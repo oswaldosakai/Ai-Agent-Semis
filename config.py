@@ -55,4 +55,5 @@ SELL_THRESHOLD = -0.35
 
 DB_PATH = os.getenv("DB_PATH", "data/factor_history.db")
 REPORT_OUTPUT_DIR = os.getenv("REPORT_OUTPUT_DIR", "data/reports")
+REPORT_RETENTION_COUNT = int(os.getenv("REPORT_RETENTION_COUNT", "15"))  # keep newest N timestamped reports
 HISTORY_RETENTION_DAYS = 90

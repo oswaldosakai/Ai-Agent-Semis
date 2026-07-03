@@ -138,5 +138,28 @@ def generate_html_report(
     with open(filepath, "w") as fh:
         fh.write(html)
 
+    # Stable copy always pointing at the newest report
+    latest_path = os.path.join(config.REPORT_OUTPUT_DIR, "latest.html")
+    with open(latest_path, "w") as fh:
+        fh.write(html)
+
+    _prune_old_reports()
+
     console.print(f"\n[cyan]HTML report saved:[/cyan] {filepath}")
     return filepath
+
+
+def _prune_old_reports():
+    """Keep only the newest REPORT_RETENTION_COUNT timestamped reports (latest.html is exempt)."""
+    reports = sorted(
+        f for f in os.listdir(config.REPORT_OUTPUT_DIR)
+        if f.startswith("report_") and f.endswith(".html")
+    )  # filename timestamps sort chronologically
+    excess = reports[:-config.REPORT_RETENTION_COUNT] if config.REPORT_RETENTION_COUNT > 0 else []
+    for f in excess:
+        try:
+            os.remove(os.path.join(config.REPORT_OUTPUT_DIR, f))
+        except OSError:
+            pass
+    if excess:
+        console.print(f"[dim]Pruned {len(excess)} old reports (keeping newest {config.REPORT_RETENTION_COUNT})[/dim]")

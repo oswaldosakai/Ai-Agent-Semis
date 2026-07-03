@@ -38,6 +38,6 @@ jobs:
         run: |
           git config user.name "semis-agent[bot]"
           git config user.email "semis-agent@users.noreply.github.com"
-          git add data/reports/ data/factor_history.db || true
+          git add -A data/reports/ && git add data/factor_history.db || true
           git diff --cached --quiet || git commit -m "chore: update semis analysis report $(date -u +'%Y-%m-%d %H:%M UTC')"
           git push origin claude/happy-hamilton-0ql8hu
